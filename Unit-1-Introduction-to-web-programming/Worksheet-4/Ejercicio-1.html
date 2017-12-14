@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>wadafak</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Write a function that can take in any number of arguments, and returns the sum of all of the arguments.</p>
+    <script>
+        function sum(...arguments) {
+            var s = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                s += arguments[i];
+            }
+            return s;
+        }
+
+        console.log("La suma es " + sum(5, 7, 9, 1, 40));
+
+    </script>
+</body>
+
+</html>

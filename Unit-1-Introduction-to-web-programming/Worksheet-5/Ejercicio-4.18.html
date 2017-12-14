@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>4.18</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+        table,
+        tr,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p id="aviso">Hacer un programa que pida por teclado cuatro valores: el número de columnas y filas de una tabla y, la altura y anchura (en pixels) de sus celdas. Una vez tecleados estos valores, el programa pintará en la página web una tabla HTML del nº de filas por el nº de columnas tecleadas.</p>
+    <script>
+        function pintarTable(columnas, filas, ancho, alto) {
+            document.write("<table>");
+            for (k = 1; k < (filas + 1); k++) {
+                document.write("<tr height='" + alto + "'>&nbsp");
+                for (ñ = 1; ñ < (columnas + 1); ñ++) {
+                    document.write("<td width='" + ancho + "'>&nbsp</td>")
+                }
+            }
+            document.write("</tr>")
+            document.write("</table>");
+        }
+        var columnas = parseInt(prompt("Introduce el número de columnas"));
+        var filas = parseInt(prompt("Introduce el número de filas"));
+        var ancho = parseInt(prompt("Introduce el ancho de celda"));
+        var alto = parseInt(prompt("Introduce el alto de celda"));
+        pintarTable(columnas, filas, ancho, alto);
+
+    </script>
+</body>
+
+</html>

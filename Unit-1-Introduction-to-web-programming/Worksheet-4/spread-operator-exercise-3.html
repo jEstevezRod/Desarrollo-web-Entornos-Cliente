@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>wadafak 4</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Write a function called combineTwoArrays that takes in two arrays as arguments, and returns a single array that combines both (using the spread operator).</p>
+    <script>
+        function combineTwoArrays(array1, array2) {
+            let array3 = [...array1, ...array2];
+            return array3;
+        }
+
+        let array1 = ["me", "pica", "el"];
+        let array2 = ["culo", "y", "me", "rasco", "suavecito"];
+
+        console.log(combineTwoArrays(array1, array2));
+
+    </script>
+</body>
+
+</html>

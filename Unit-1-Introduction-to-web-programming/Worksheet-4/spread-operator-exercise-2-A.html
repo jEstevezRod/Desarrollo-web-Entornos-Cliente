@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>wadafak 2</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Write a function called addOnlyNums that can take in any number of arguments (including numbers or strings), and returns the sum of only the numbers.</p>
+    <script>
+        function addOnlyNums(...arguments) {
+            var s = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                if (typeof arguments[i] == 'number') {
+                    s += (arguments[i]);
+                }
+
+            }
+            return s;
+        }
+
+        console.log("La suma es " + addOnlyNums(5, 7, 9, 1, 40, "a", 8, "b"));
+
+    </script>
+</body>
+
+</html>

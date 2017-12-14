@@ -1,0 +1,36 @@
+// WORKSHEET 2     3.THE GEOMETRIZER
+
+var radius = prompt("Dígame usted el valor del radio");
+
+var res = radius * 3.1415 * 2;
+
+var sol = 3.1415 * (Math.pow(radius, 2));
+
+document.write("Usted indicó que el radio era " + radius + " por lo que la circunferencia es de " + res);
+
+
+document.write("<br />");
+document.write("<br />");
+
+document.write("Usted indicó que el radio era " + radius + " por lo que el area es " + sol);
+
+
+// WORKSHEET 2     4. THE TEMPERATURE CONVERTER
+
+var cel = prompt("Introduce una temperatura en Celsius y la convertire en Fahrenheit")
+
+var fah = (9 / 5 * cel) + 32;
+
+document.write("<br />");
+document.write("<br />");
+
+document.write("Has introducido " + cel + " grados celsius que son " + fah + " grados Fahrenheit");
+
+var fahr = prompt("Ahora introduce una temperatura Fahrenheit para transformarla a Celsius");
+
+var cels = (fahr - 32) * 5 / 9;
+
+document.write("<br />");
+document.write("<br />");
+
+document.write("Has introducido " + fahr + " grados Fahrenheit que son " + cels + " grados Celsius");

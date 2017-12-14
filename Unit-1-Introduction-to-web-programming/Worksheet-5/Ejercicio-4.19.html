@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>4.19</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+        table,
+        tr,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Hacer un programa que pinte un tablero de ajedrez de 8x8 casillas usando dos for anidados.
+    </p>
+    <p>El programa pedirá solamente el ancho de la celda que será igual que el alto.
+    </p>
+    <script>
+        function pintarTable(ancho) {
+            document.write("<table>");
+            for (k = 1; k < (9); k++) {
+                if (k % 2 == 0) {
+                    document.write("<tr height='" + ancho + "'>&nbsp");
+                } else {
+                    document.write("<tr height='" + ancho + "'>&nbsp");
+                }
+                for (ñ = 1; ñ < (9); ñ++) {
+                    if (k % 2 == 0 && ñ % 2 == 0) {
+                        document.write("<td bgcolor='white' width='" + ancho + "'>&nbsp</td>")
+                    } else if (k % 2 == 0 && ñ % 2 == 1) {
+                        document.write("<td bgcolor='black' width='" + ancho + "'>&nbsp</td>")
+                    } else if (k % 2 == 1 && ñ % 2 == 0) {
+                        document.write("<td bgcolor='black' width='" + ancho + "'>&nbsp</td>")
+                    } else {
+                        document.write("<td bgcolor='white' width='" + ancho + "'>&nbsp</td>")
+                    }
+                }
+            }
+            document.write("</tr>")
+            document.write("</table>");
+        }
+
+        var ancho = parseInt(prompt("Introduce el ancho de celda"));
+        pintarTable(ancho);
+
+    </script>
+</body>
+
+</html>

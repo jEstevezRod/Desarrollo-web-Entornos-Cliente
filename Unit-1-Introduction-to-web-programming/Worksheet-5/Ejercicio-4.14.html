@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>4.14</title>
+</head>
+
+<body>
+    <script>
+        function pintarTable(columnas, ancho, alto) {
+            document.write("<table cellspacing='2' bgcolor='black'>");
+            document.write("<tr bgcolor='white' height='" + alto + "'>");
+            var i = 1;
+            while (i < (columnas + 1)) {
+                document.write("<td width='" + ancho + "'>&nbsp;</td>");
+                i++;
+            }
+            document.write("</tr>")
+            document.write("</table>");
+        }
+
+        var columnas = parseInt(prompt("Introduce el número de columnas"));
+        var ancho = parseInt(prompt("Introduce el ancho de celda"));
+        var alto = parseInt(prompt("Introduce el alto de celda"));
+        pintarTable(columnas, ancho, alto);
+
+    </script>
+</body>
+
+</html>

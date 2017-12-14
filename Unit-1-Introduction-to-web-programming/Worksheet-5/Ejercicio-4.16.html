@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style>
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>
+        <h1>CON DO .. WHILE</h1>
+    </p>
+    <p>Escribe un programa en JavaScript que consista en adivinar un número previamente introducido por teclado (jugador 1). El programa pedirá tantos números como intentos erróneos haga el jugador 2. Solamente terminará cuando el jugador 2 acierte. El programa dará pistas al jugador 2 indicándole si su número es mayor o menor que el número a adivinar.</p>
+    <script>
+        var num_adivinar = parseInt(prompt("Introduce el numero que tienen que adivinar"));
+        do {
+            num = parseInt(prompt("Intenta adivinar el numero!"));
+            if (num_adivinar > num) {
+                alert("El número que has introducido es menor!");
+            } else if (num > num_adivinar) {
+                alert("El número que has introducido es mayor!");
+            }
+        }
+        while (num_adivinar != num);
+        alert("HAS ACERTADO CRACK!")
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+// WORKSHEET 1 EXERCISE 1
+
+alert("Hola Mundo"); // Lanza un mensaje mostrando un texto
+
+//WORKSHEET 1 EXERCISE 2
+
+alert("Soy el primer script!"); // Lanza un mensaje mostrando un texto
+
+//WORKSHEET 1 EXERCISE 3
+
+var mensaje = alert("Hola mundo!\nQué fácil es incluir 'comillas simples'" + '\n y "comillas dobles"');
+mensaje;
+
+//WORKSHEET 1 EXERCISE 4
+
+var a = 2;
+
+var b = 9;
+
+var c = a + b;
+
+
+document.write("El valor de la primera variable es:   " + a + "<br />");
+
+document.write("El valor de la segunda variable es:   " + b + "<br />");
+
+document.write("La suma es:  " + c + "<br />" + "<br />");
+
+//WORKSHEET 1 EXERCISE 5
+
+var num1 = prompt("Dime un numero para sumar", "del 0 al 99999999999 pls");
+
+var num2 = prompt("Dime otro numero", "del 0 al 99999999999 pls");
+
+document.write(" El resultado de las variables introducidas es: " + (+num1 + +num2));
+
+//WORKSHEET 1 EXERCISE 6
+
+var comp1 = parseInt(prompt("Dime un número para compararlo", "Piensatelo bien eh"));
+
+var comp2 = parseInt(prompt("Dime otro número para comparar", "Piensatelo bien eh"));
+
+document.write("<br />");
+document.write("<br />");
+
+if (comp1 > comp2) {
+    document.write("El " + comp1 + " es el número mayor");
+} else if (comp2 > comp1) {
+    document.write("El " + comp2 + " es el número mayor");
+} else {
+    document.write("Me parece que son iguales.");
+}
+
+//WORKSHEET 1 EXERCISE 7
+
+
+var nota = parseInt(prompt("Dime la nota que crees que vas a sacar en Desarollo Web en Entornos Cliente", "de 0 a 10..."));
+
+document.write("<br />");
+document.write("<br />");
+
+if (nota >= 0 && nota < 5) {
+    document.write("Hamijo, ere realista y sinsero, tas suspenso");
+} else if (nota >= 5 && nota < 7) {
+    document.write("Aprobado por los pelos");
+} else if (nota >= 7 && nota < 9) {
+    document.write("NOTABLE ! ");
+} else {
+    document.write("LIKE A GOD. SOBRESALIENTE");
+}

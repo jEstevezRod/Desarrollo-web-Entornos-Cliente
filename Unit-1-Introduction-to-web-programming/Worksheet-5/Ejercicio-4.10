@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>4.10</title>
+    <style type="text/css">
+        body {
+            background: #676869;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>PRÁCTICA DEL BUCLE FOR</h1>
+    <script>
+        function cabecera2() {
+            for (var i = 1; i < 7; i++) {
+                document.write("<h" + i + ">Cabecera h" + i + "</h" + i + ">");
+            }
+            document.write("Terminado");
+        }
+
+        cabecera2();
+
+    </script>
+</body>
+
+</html>

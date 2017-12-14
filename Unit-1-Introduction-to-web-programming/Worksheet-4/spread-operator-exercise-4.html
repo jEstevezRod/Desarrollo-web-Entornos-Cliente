@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>wadafak uniques </title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Write a function called onlyUniques that can take in any number of arguments, and returns an array of only the unique arguments.</p>
+    <script>
+        function onlyUniques(...arguments) {
+            let unique = arguments.filter((currentValue, index) => arguments.indexOf(currentValue) === index);
+            return unique;
+        }
+
+        console.log(onlyUniques(1, 1, 2, 3, 3, "a", "b", "b", "c"));
+
+    </script>
+</body>
+
+</html>

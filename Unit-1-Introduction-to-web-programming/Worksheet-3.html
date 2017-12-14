@@ -1,0 +1,37 @@
+// 1
+
+var num1 = parseInt(prompt("Dime un número para compararlo"));
+
+var num2 = parseInt(prompt("Dime otro número para comparar"));
+
+function greaterNum(num1, num2) {
+    if (num1 > num2) {
+        alert("El " + num1 + " es el número mayor");
+    } else (num2 >= num1) {
+        alert("El " + num2 + " es el número mayor");
+    }
+}
+
+greaterNum(num1, num2);
+
+//2
+
+var lan = prompt("Dime el lenguaje", "por ejemplo es, en, de")
+
+function helloWorld(lan) {
+    switch (lan) {
+        case 'es':
+            document.write("Hola mundito!");
+            break;
+        case 'en':
+            document.write("Hello world!");
+            break;
+        case 'de':
+            document.write("Hallo Welt!");
+            break;
+        default:
+            document.write("Hello world!");
+    }
+}
+
+helloWorld(lan);

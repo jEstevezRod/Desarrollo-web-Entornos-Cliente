@@ -1,0 +1,33 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>wadafak cuadrado </title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Write a function called squareAndSum that takes in any number of arguments, squares them, then sums all of the squares.
+
+    </p>
+    <script>
+        function squareAndSum(...args) {
+            var x = 0;
+            for (var i = 0; i < args.length; i++) {
+                x += args[i] ** 2;
+            }
+            document.write(x);
+        }
+        squareAndSum(2, 3);
+
+    </script>
+</body>
+
+</html>
