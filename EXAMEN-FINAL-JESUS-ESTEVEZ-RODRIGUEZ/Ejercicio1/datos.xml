@@ -1,0 +1,14 @@
+<listaNoticias> 
+    <noticia>
+        <titulo> Noticia 1 </titulo>
+        <fecha>10/12/2017</fecha>
+        <texto> Contenido noticia 1 </texto>
+        <imagen>portada.jpeg</imagen>
+    </noticia>
+    <noticia>
+        <titulo> Noticia 2 </titulo>
+        <fecha>12/12/2017</fecha>
+        <texto> Contenido noticia 2 </texto>
+        <imagen>noticia2.jpeg</imagen>
+    </noticia>
+</listaNoticias>

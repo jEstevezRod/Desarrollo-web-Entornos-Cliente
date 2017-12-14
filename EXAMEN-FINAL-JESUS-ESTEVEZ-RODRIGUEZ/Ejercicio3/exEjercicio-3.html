@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dsadsada</title>
+</head>
+<body>
+<div id="paco"></div>
+<script>
+
+    function creaCuadrado(id, lado) {
+        let sitio = document.getElementById(id);
+        let svgpapa = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svgpapa.setAttribute('width', 500);
+        svgpapa.setAttribute('height', 500);
+        sitio.appendChild(svgpapa);
+        let svg = document.createElementNS("http://www.w3.org/2000/svg",'rect');
+        svgpapa.appendChild(svg);
+        svg.setAttribute('width',lado);
+        svg.setAttribute('height', lado);
+        svg.setAttribute('fill','red');
+        svg.setAttribute('id', 'cuadrao');
+        let but = document.createElement('button');
+        document.body.appendChild(but);
+        but.addEventListener('click', animacion);
+        but.innerHTML = "Anima rectangulo";
+    }
+
+    function animacion() {
+        let cuad = document.getElementsByTagNameNS("http://www.w3.org/2000/svg",'rect')[0];
+        cuad.innerHTML += "<animate xlink:href='#cuadrao' attributeName='width' from='0' to='350' dur='5s' begin='0s' fill='red'/>";
+        cuad.innerHTML += "<animate xlink:href='#cuadrao' attributeName='height' from='0' to='350' dur='5s' begin='0s' fill='red'/>";
+
+    }
+
+    creaCuadrado('paco',50);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 2</title>
+</head>
+
+<body onload=open()>
+<h1>Para crear enlaces use la función:</h1>
+<p>creaEnlace(texto, url, nodo)</p>
+<div></div>
+<script>
+    var list = [];
+    var retriewdata;
+    let enlace;
+
+
+    function creaEnlace(texto, url, node) {
+        let abuelo = document.getElementsByTagName(node)[0];
+        enlace = document.createElement('a');
+        abuelo.appendChild(enlace);
+        enlace.setAttribute('href', url);
+        enlace.innerHTML += texto;
+        list.push([texto, url, node]);
+        almacenar();
+        asociaEvento();
+    }
+
+    function almacenar() {
+        localStorage.setItem('enlaces', JSON.stringify(list))
+    }
+
+    function open() {
+        if (localStorage.getItem('enlaces')) {
+            retriewdata = JSON.parse(localStorage.getItem('enlaces'));
+            for (let i = 0; i < retriewdata.length; i++) {
+                creaEnlace(retriewdata[i][0], retriewdata[i][1], retriewdata[i][2]);
+            }
+        }
+    }
+
+    function asociaEvento() {
+        enlace.setAttribute('onmouseover',"style.backgroundColor='red'");
+        enlace.setAttribute('onmouseout', "style.backgroundColor='white'")
+    }
+
+
+
+</script>
+</body>
+
+</html>

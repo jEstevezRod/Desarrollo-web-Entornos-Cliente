@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 1</title>
+    <style>
+        table,
+        td,
+        th{
+            padding: 15px;
+            text-align: center;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        #u1 {
+            display: block;
+        }
+    </style>
+</head>
+
+<body onload="carga()">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<span>
+<table id="tablon">
+
+    <tr>
+        <th id="titulo" scope="col"></th>
+        <th id="fecha" scope="col"></th>
+    </tr>
+    <tr>
+        <td id="1"></td>
+        <td id="2"></td>
+    </tr>
+    <tr>
+        <td id="3"></td>
+        <td id="4"></td>
+    </tr>
+
+</table>
+<div id="u1">
+</div>
+</span>
+<script>
+
+
+    function loadDoc() {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                try {
+                    let ajaxPetition = this.responseText;
+                    let parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(ajaxPetition, "text/xml");
+                    $('#titulo').text('Titulo'); // Pongo los nombres de las tablas
+                    $('#fecha').text('Fecha');
+                    /*Escribe el valor del dato Titulo/Fecha obtenido del archivo XML , le asigno un evento click
+                    para que escriba el contenido y crea una nueva imagentodo ello obtenido nombre obteniedo de XML*/
+                    $('#1').text(xmlDoc.children[0].children[0].children[0].innerHTML).click(function(){
+                        $('#u1').text(xmlDoc.children[0].children[0].children[2].innerHTML);
+                        $(new Image()).attr('src', xmlDoc.children[0].children[0].children[3].innerHTML).appendTo($('#u1')).show();
+                    });
+                    $('#2').text(xmlDoc.children[0].children[0].children[1].innerHTML).click(function(){
+                        $('#u1').text(xmlDoc.children[0].children[0].children[2].innerHTML);
+                        $(new Image()).attr('src', xmlDoc.children[0].children[0].children[3].innerHTML).appendTo($('#u1')).show();
+                    });
+                    $('#3').text(xmlDoc.children[0].children[1].children[0].innerHTML).click(function(){
+                        $('#u1').text(xmlDoc.children[0].children[1].children[2].innerHTML);
+                        $(new Image()).attr('src', xmlDoc.children[0].children[1].children[3].innerHTML).appendTo($('#u1')).show();
+
+                    });
+                    $('#4').text(xmlDoc.children[0].children[1].children[1].innerHTML).click(function(){
+                        $('#u1').text(xmlDoc.children[0].children[1].children[2].innerHTML);
+                        $(new Image()).attr('src', xmlDoc.children[0].children[1].children[3].innerHTML).appendTo($('#u1')).show();
+
+                    });
+                } catch (error) {
+                    // En caso de error mostraría cuál es el fallo
+                    console.error(error);
+                }
+            }
+        }
+        xhr.open("GET", "datos.xml", true);
+        xhr.send();
+    }
+
+    function carga() {
+        //A los 3 segundos llama a la funcion loadDoc para que solicite la informacion al XML
+        setTimeout(loadDoc,3000)
+    }
+
+</script>
+
+</body>
+
+</html>
