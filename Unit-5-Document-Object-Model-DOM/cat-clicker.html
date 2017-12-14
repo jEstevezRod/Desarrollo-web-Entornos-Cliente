@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>
+<div>
+    <img id="Paco" src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.yupiyupi.com%2Fwp-content%2Fuploads%2F2008%2F07%2Fgatito-pollito.jpg&f=1" onclick="cuentaclicks('Paco')">
+    <p></p>
+</div>
+<div ">
+    <img src="https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FLHH5wdQQJdQ%2Fhqdefault.jpg&f=1" onclick="cuentaclicks('Pepe')">
+    <p></p>
+</div>
+</span>
+<script>
+    class Gato {
+
+    	constructor(img, nombre) {
+		    this.parent = document.body;
+    		this.cont = 0;
+    		this.nombre = nombre;
+    		this.img = img;
+		    this.div = document.createElement("div");
+		    this.p = document.createElement("p");
+		    this.img = document.createElement("img");
+		    this.img.setAttribute("src", this.img);
+		    this.img.setAttribute("cont", this.cont);
+		    this.img.setAttribute("hidden", true);
+		    this.img.addEventListener("click", cuentaclicks);
+		    this.p.setAttribute("id", this.cont);
+		    this.cont++;
+		    this.p.createTextNode(this.nombre + this.cont);
+		    this.parent.appendChild(this.div);
+		    this.div.appendChild(this.img);
+		    this.div.appendChild(this.p);
+        }
+
+        toHTML
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var cont = 0;
+    var parent = document.body;
+
+    function putPhoto(src, name, textP) {
+	    var div = document.createElement("div");
+	    var p = document.createElement("p");
+	    var img = document.createElement("img");
+	    img.setAttribute("src", src);
+	    img.setAttribute("cont", "0");
+	    img.addEventListener("click", cuentaclicks(name, cont));
+	    p.setAttribute("id", cont);
+	    cont++;
+	    p.createTextNode(textP);
+	    parent.appendChild(div);
+	    div.appendChild(img);
+        div.appendChild(p);
+
+
+
+    }
+
+
+    function cuentaclicks(n){
+    	var texto = document.getElementsByTagName("p");
+    	var cont = document.getElementsByTagName("img");
+    	var suma = parseInt(cont );
+
+	    document.getElementById(id).innerHTML = name + " : " + String(parseInt(photo.cont++));
+
+    }
+</script>
+</body>
+</html>

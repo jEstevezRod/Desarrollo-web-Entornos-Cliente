@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pong!</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        svg {
+            border: 2px solid dimgrey;
+            background-color: deepskyblue;
+            width: 1800px;
+            height: 900px;
+            margin-right: 175px;
+            margin-left: 175px;
+        }
+
+
+        #resul>span {
+            color: white;
+            font-family: "Calibri Light";
+            font-size: 150%;
+            padding: 30px 130px 30px 130px;
+
+        }
+        section {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #marcadorA {
+            background-color: #ff3f29;
+            font-family: "Calibri Light";
+        }
+
+        #marcadorB {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+
+<section id="resul">
+    <span id="marcadorA"> </span>
+    <span id="marcadorB"> </span>
+</section>
+
+<script>
+
+	class Canvas {
+		constructor() {
+			this.parent = document.body;
+			this.canvas = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			this.parent.appendChild(this.canvas);
+			this.canvas.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+			this.canvas.setAttribute('id', 'svg');
+		}
+	}
+
+	class Ball {
+		constructor(coorx, coory, radius, colour) {
+			this.parent = document.getElementById("svg");
+			this.circulo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+			this.parent.appendChild(this.circulo);
+			this.pelota = document.getElementsByTagName("circle")[0];
+			this.pelota.setAttribute("cx", coorx);
+			this.pelota.setAttribute("cy", coory);
+			this.pelota.setAttribute("r", radius);
+			this.pelota.setAttribute("fill", colour);
+			this.avancex = 1;
+			this.avancey = 1;
+
+		}
+
+		wallCollision() {
+			if (this.posX >= 1760) {
+				this.avancex *= -1;
+				resultadico.sumGolA();
+				console.log("gol A")
+			}
+			if (this.posX <= 40) {
+				this.avancex *= -1;
+				resultadico.sumGolB();
+				console.log("gol B")
+			}
+			if ((this.posY ) >= 860 || (this.posY ) <= 40) {
+				this.avancey *= -1;
+			}
+		}
+
+		stickCollision(){
+			if (this.posX < 850) {
+				var pY = pala1.stickPositionY(pala1) ;
+				if (Math.abs(this.posX - 130) <= 0) {
+					console.log("esta en x");
+					if (((pY >= this.posY) && (pY + 250) <= this.posY)) {
+						this.avancex *= -1;
+					    console.log("choque con pala")
+					}
+
+				}
+			} else if (this.posX > 850) {
+				let pY2 = pala2.stickPositionY(pala2) ;
+				if (Math.abs( 1680 - this.posX ) <= 0) {
+					console.log("esta en x2");
+					if ((Math.abs(this.posY - pY2 + 250 ) <= 0) || (Math.abs(this.posY - pY2 + 250)) >= 0) {this.avancex *= -1;}
+				}
+			}
+		}
+
+
+		motion() {
+			this.posX = this.pelota.getAttribute("cx");
+			this.posY = this.pelota.getAttribute("cy");
+			this.wallCollision();
+			this.posX = this.pelota.getAttribute("cx");
+			this.posY = this.pelota.getAttribute("cy");
+			this.stickCollision();
+			this.circulo.cx.baseVal.value += this.avancex;
+			this.circulo.cy.baseVal.value += this.avancey;
+		}
+	}
+
+	class Scoreboard {
+
+		constructor() {
+			this.contadorA = 0;
+			this.contadorB = 0;
+			document.getElementById("marcadorA").innerHTML = "Goles de equipo A: " + this.contadorB;
+			document.getElementById("marcadorB").innerHTML = "Goles de equipo B: " + this.contadorA;
+		}
+
+		sumGolA(){
+			this.contadorA += 1;
+			document.getElementById("marcadorA").innerHTML = "Goles de equipo A: " + this.contadorB;
+		}
+
+		sumGolB(){
+			this.contadorB += 1;
+			document.getElementById("marcadorB").innerHTML = "Goles de equipo B: " + this.contadorA;
+		}
+	}
+
+	class Player {
+
+		constructor(num, coorx, coory, color){
+			this.parent = document.getElementById("svg");
+			this.rectan = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+			this.parent.appendChild(this.rectan);
+			this.jugador = document.getElementsByTagName("rect")[num];
+			this.jugador.setAttribute("x" , coorx);
+			this.jugador.setAttribute("y" , coory);
+			this.jugador.setAttribute("rx" , "14");
+			this.jugador.setAttribute("ry" , "14");
+			this.jugador.setAttribute("width" , "35");
+			this.jugador.setAttribute("height" , "250");
+			this.jugador.setAttribute("onkeydown", "movimiento");
+			this.jugador.style.fill = color;
+			this.jugador.style.stroke = "black";
+			this.jugador.style.strokeWidth = "2";
+		}
+
+		stickPositionY(pala){
+			return pala.rectan.y.baseVal.value
+		}
+	}
+
+	document.body.addEventListener("keydown", movimiento, false);
+
+	var screen = new Canvas();
+	var resultadico = new Scoreboard();
+	var bola = new Ball( "700", "300", "40", "red");
+	var pala1 = new Player(0, 50, 300, "orange");
+	var pala2 = new Player(1,1715, 300, "blue");
+
+
+	function movimiento(event) {
+		/* Player 1 KEYS: ArrowUp y ArrowDown
+           Player 2 KEYS: 'Q' (up) and 'A' (down)
+         */
+		var dist = 20;
+		let code = event.keyCode || event.which;
+		if (code == 81){
+			if (pala1.rectan.y.baseVal.value > 0 ) {pala1.rectan.y.baseVal.value -= dist;}
+		} else if (code == 65) {if (pala1.rectan.y.baseVal.value < 645 ) {pala1.rectan.y.baseVal.value += dist;}}
+		if (code == 38){
+			if (pala2.rectan.y.baseVal.value > 0 ) {pala2.rectan.y.baseVal.value -= dist;}
+		} else if (code == 40) {if (pala2.rectan.y.baseVal.value < 645 ) {pala2.rectan.y.baseVal.value += dist;}}
+	}
+
+
+
+
+	setInterval(function () {
+		bola.motion();
+	}, 1000 / 200);
+
+	document.body.addEventListener("keydown", movimiento);
+
+</script>
+</body>
+</html>

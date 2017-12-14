@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 4</title>
+    <style>
+        #lista {
+            border: 1px solid black;
+            margin-right: 1500px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>4. Crea una web con una lista de elementos y un botón que cada vez que pulsemos introduzca una entrada nueva en la lista.</p>
+
+    <div>
+        <ul id="lista">
+
+        </ul>
+    </div>
+    <button type="button" onclick="expandirArray()" autofocus>Nuevo elemento en la lista</button>
+    <script>
+        function expandirArray() {
+            let list = document.getElementById("lista")
+            let contenido = prompt("Dale un nombre");
+            list.innerHTML += `<li>${contenido}</li>`;
+            list.style.backgroundColor = `rgb(${Math.floor(Math.random() * (256 - 0))},${Math.floor(Math.random() * (256 - 0))},${Math.floor(Math.random() * (256 - 0))})`;
+        }
+    </script>
+
+</body>
+
+</html>

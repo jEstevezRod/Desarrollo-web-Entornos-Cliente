@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 1</title>
+    <style>
+        #enunciado {
+            font-family: Calibri Light;
+            font-size: 130%;
+        }
+        
+        #parrafos {
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="enunciado">
+        <p>1. Crea una página web con al menos tres párrafos de texto y dentro de ellos un número indeterminado de enlaces (al menos uno debe enlazar a google). Haciendo tan sólo uso del DOM muestra los siguientes datos:</p>
+
+        <ul>
+            <li>Número de enlaces de la página </li>
+            <li>Dirección a la que enlaza el penúltimo enlace </li>
+            <li>Numero de enlaces que enlazan a google</li>
+            <li>Número de enlaces del tercer párrafo </li>
+        </ul>
+    </div>
+    <div id="parrafos">
+        <p> Párrafo 1:
+            <a href="https://www.google.es/"> google</a>
+            <a href="https://www.amazon.es/">amazon</a>
+            <a href="https://www.google.es/">google</a>
+            <a href="https://www.amazon.es/">amazon</a>
+            <a href="https://www.facebook.com/">facebook</a>
+        </p>
+
+        <p>Párrafo 2:
+            <a href="https://www.amazon.es/"> amazon</a>
+            <a href="https://www.facebook.com/">facebook</a>
+            <a href="https://www.google.es/">google</a>
+            <a href="https://www.amazon.es/">amazon</a>
+            <a href="https://www.google.es/">google</a>
+            <a href="https://www.google.es/">google</a>
+        </p>
+
+        <p>Párrafo 3:
+            <a href="https://www.amazon.es/"> amazon</a>
+            <a href="https://www.google.es/">google</a>
+            <a href="https://www.facebook.com/">facebook</a>
+            <a href="https://www.google.es/">google</a>
+            <a href="https://www.amazon.es/">amazon</a>
+            <a href="https://www.google.es/">google</a>
+            <a href="https://www.facebook.com/">facebook</a>
+            <a href="https://www.google.es/">google</a>
+        </p>
+
+
+    </div>
+    <div id="respuestas">
+        <div id="respuesta1"></div>
+        <div id="respuesta2"></div>
+        <div id="respuesta3"></div>
+        <div id="respuesta4"></div>
+    </div>
+
+    <script type="text/javascript">
+        function contar() {
+            let links = document.getElementsByTagName("a");
+            document.getElementById("respuesta1").innerHTML = `Esta página tiene ${links.length} links.<br/><br/>`
+        }
+
+        function penultimo() {
+            let parr = document.getElementsByTagName("p");
+            for (let t = 1; t <= parr.length - 1; t++) {
+                let k = (parr[t].getElementsByTagName("a"));
+                console.log(k)
+                var resul = parr[t].getElementsByTagName("a")[k.length - 2].href;
+                document.getElementById("respuesta2").innerHTML += `${resul} <br/>`;
+            }
+        }
+
+        function contarGoogle() {
+            let contador = 0;
+            let pa = document.getElementsByTagName("p");
+            for (let t = 1; t <= pa.length - 1; t++) {
+                let links = (pa[t].getElementsByTagName("a"));
+                for (var index = 0; index < links.length; index++) {
+                    if (links[index] == "https://www.google.es/") {
+                        contador++;
+                        console.log(contador)
+                    }
+                }
+            }
+            document.getElementById("respuesta3").innerHTML = `<br/>Hay ${contador} links de Google en total <br/>`;
+        }
+
+        function init() {
+            contar();
+            penultimo();
+            contarGoogle();
+        }
+
+
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>

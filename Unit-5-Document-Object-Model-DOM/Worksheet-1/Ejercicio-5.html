@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 5</title>
+</head>
+
+<body>
+    <p>5. Estás diseñando una aplicación web para subir ficheros al servidor. Haciendo uso de DOM, consigue que el usuario pueda adjuntar tantos ficheros como desee. Por tanto inicialmente será necesario un input de tipo fichero, un botón “Adjuntar otro
+        fichero” y un segundo botón “Enviar”, de modo que al pulsar el primero de los botones automáticamente aparezca otro input para elegir fichero.</p>
+
+    <input type="file" onclick="anadirFichero()">
+    <div id="zonaSubida"></div>
+
+    <script>
+        function anadirFichero() {
+            let parent = document.getElementById("zonaSubida")
+            let newFichero = document.createElement('input');
+            newFichero.type = 'file';
+            newFichero.addEventListener("click", anadirFichero);
+            let newBreak = document.createElement('br');
+            parent.appendChild(newBreak)
+            parent.appendChild(newFichero);
+            parent.appendChild(newButton);
+        }
+
+        window.onload(anadirFichero)
+    </script>
+    <button style="margin-top:20px">Enviar</button>
+</body>
+
+</html>

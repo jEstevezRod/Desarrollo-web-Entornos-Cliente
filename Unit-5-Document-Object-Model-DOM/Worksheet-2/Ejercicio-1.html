@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg</title>
+    <style>
+        svg {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<svg id="svg" height="1000" width="1200" xmlns="http://www.w3.org/2000/svg">
+    <circle id="bola1" cx="140" cy="600" r="50" fill="red"></circle>
+    <circle id="bola2" cx="700" cy="100" r="50" fill="grey"></circle>
+
+</svg>
+
+<script>
+	// VARIABLES GLOBALES //
+	var bola1 = document.getElementById("bola1");
+	var bola2 = document.getElementById("bola2");
+	var avancex = 1;
+	var avancey = 1;
+	var avancex2 = 1;
+	var avancey2 = 1;
+	var positionx;
+	var positiony;
+	var positionx2;
+	var positiony2;
+
+	function movimiento1() {
+		bola1.setAttribute("cx", parseInt(bola1.getAttribute("cx")) + avancex);
+		bola1.setAttribute("cy", parseInt(bola1.getAttribute("cy")) + avancey);
+		positionx = parseInt(bola1.getAttribute("cx"));
+        positiony = parseInt(bola1.getAttribute("cy"));
+		if ((positionx + 50) >= 1200 || (positionx - 50) <= 0) {
+            avancex *= -1;
+		} else if ((positiony + 50) >= 1000 || (positiony - 50) <= 0) {
+            avancey *= -1;
+		} else if (Math.abs(positionx - positionx2) <= 100 && Math.abs(positiony - positiony2) <= 100) {
+			avancex *= -1;
+			avancey *= -1;
+        }
+	}
+	function movimiento2() {
+		bola2.setAttribute("cx", parseInt(bola2.getAttribute("cx")) + avancex2);
+		bola2.setAttribute("cy", parseInt(bola2.getAttribute("cy")) + avancey2);
+		positionx2 = parseInt(bola2.getAttribute("cx"));
+        positiony2 = parseInt(bola2.getAttribute("cy"));
+		if ((positionx2 + 50) >= 1200 || (positionx2 - 50) <= 0) {
+            avancex2 *= -1;
+		} else if ((positiony2 + 50) >= 1000 || (positiony2 - 50) <= 0) {
+            avancey2 *= -1;
+		} else if (Math.abs(positionx2 - positionx) <= 100 && Math.abs(positiony2 - positiony) <= 100) {
+			avancex2 *= -1;
+			avancey2 *= -1;
+        }
+	}
+	setInterval(function () {
+		movimiento1();
+		movimiento2();
+	}, 1000 / 300);
+
+</script>
+</body>
+</html>

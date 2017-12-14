@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 6</title>
+    <style>
+        body {
+            padding: 20px 200px 50px 200px;
+            font-family: Calibri Light;
+            font-size: 130%;
+        }
+        
+        #imagen {
+            margin-left: 350px;
+        }
+        
+        #botones {
+            margin-left: 650px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Se desea realizar mediante DOM un visor de imágenes. Para ello en tu página se mostrará una imagen, junto a dos botones “Siguiente” y “Anterior”. Impleméntala la funcionalidad para poder navegar entre un conjunto de imágenes que tendrás previamente
+        preparadas.
+    </p>
+    <div id="imagen"><img id="img" src="https://i.ytimg.com/vi/UwK7XBIS7Ds/maxresdefault.jpg" width="750px" height="550px"></div>
+    <div id="botones"><button onclick="atras()" style="margin-right: 30px;">Anterior</button><button onclick="adelante()">Siguiente</button></div>
+
+
+    <script>
+        const collection = ["https://i.ytimg.com/vi/UwK7XBIS7Ds/maxresdefault.jpg", "http://elheraldoslp.com.mx/wp-content/uploads/2017/06/fotos-animales.jpg",
+            "https://www.anipedia.net/imagenes/curiosidades-animales.jpg", "http://www.diarioinformacion.com/elementosWeb/gestionCajas/MMP/Image/2016/osopolar.jpg",
+            "https://quecome.org/wp-content/uploads/2016/08/que-comen-animales.jpg",
+            "http://www.animalesextremos.com/Imagenes/los-animales-mas-peligrosos-del-mundo.jpg"
+        ];
+
+        function adelante() {
+            let imagen = document.getElementById("img");
+            let pos = collection.indexOf(imagen.src);
+            if (pos + 1 < collection.length) imagen.src = collection[pos + 1];
+            else imagen.src = collection[0]
+        }
+
+        function atras() {
+            let imagen = document.getElementById("img");
+            let pos = collection.indexOf(imagen.src);
+            if (pos - 1 >= 0) imagen.src = collection[pos - 1];
+            else imagen.src = collection[5]
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>
