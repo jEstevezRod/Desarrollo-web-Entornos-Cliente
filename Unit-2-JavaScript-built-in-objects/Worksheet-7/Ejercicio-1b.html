@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <script>
+        if ("geolocation" in navigator) {
+            document.write("Available")
+
+            /* geolocation is available */
+        } else {
+            document.write("NOT available")
+            /* geolocation IS NOT available */
+        }
+
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.write(position.coords.latitude + " and " + position.coords.longitude);
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>

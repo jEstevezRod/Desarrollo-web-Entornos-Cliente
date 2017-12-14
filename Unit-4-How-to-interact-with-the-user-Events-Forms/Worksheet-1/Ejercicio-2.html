@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EJERCICIO 2</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            padding-top: 100;
+            width: 1300px;
+            margin: 0 auto;
+            font-size: 120%;
+            font-family: Calibri Light;
+        }
+    </style>
+
+</head>
+
+<body>
+    <p>Captura el movimiento del ratón, para que se muestre la posición en la que se encuentra en cada momento.
+    </p>
+
+    <p id="pos"></p>
+
+    <script>
+        function controlarPosicion(event) {
+            window.onmousemove
+            var x = window.event.clientX;
+            var y = window.event.clientY;
+            console.log("Posicion x: " + x + " -- Posicion y: " + y);
+            document.getElementById("pos").innerHTML = "Posicion x: " + x + "<br/> Posicion y: " + y;
+        }
+
+        function escuchar() {
+            document.addEventListener("mousemove", controlarPosicion)
+        }
+        setTimeout(escuchar, 500)
+    </script>
+</body>
+
+</html>

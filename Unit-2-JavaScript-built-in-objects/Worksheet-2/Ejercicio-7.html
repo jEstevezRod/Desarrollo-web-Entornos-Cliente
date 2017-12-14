@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>caca de vaca de la blanda, pero algo mas dura</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Crea una web que genere una tabla con dos columnas. En la primera un numero ascendente y en la otra el valor de su seno.
+
+    </p>
+
+    <script>
+        function seno(num) {
+            document.write("<table>");
+            for (var i = 0; i <= num; i++) {
+                document.write("<tr>");
+                document.write("<td>" + i + ' --> ' + "</td>");
+                document.write("<td>" + Math.sin(i * Math.PI / 180) + "</td>");
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        };
+
+        seno(360);
+
+    </script>
+</body>
+
+</html>

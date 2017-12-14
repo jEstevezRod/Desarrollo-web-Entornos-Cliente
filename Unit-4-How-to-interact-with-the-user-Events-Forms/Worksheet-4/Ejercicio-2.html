@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+        
+        #texto {
+            margin: 30px;
+            border: 2px solid black;
+            padding: 15px;
+            font-size: 15px;
+        }
+        
+        #botones {
+            border: 2px solid black;
+            margin-top: 35px;
+            margin-right: 42%;
+            margin-left: 42%;
+            background-color: rgb(164, 207, 255);
+            visibility: hidden;
+        }
+        
+        #botones h2 {
+            padding-left: 20px;
+        }
+        
+        #defecto {
+            margin-top: 15px;
+            margin-left: 33%;
+        }
+    </style>
+</head>
+
+<body>
+    <p>1) Diseña una web que hará uso de cookies para guardar el nombre del usuario. En caso de no tener ninguna cookie de ese sitio, deberá preguntar el nombre del usuario y almacenarlo en una cookie que caducará en 5 minutos. Tras esto saludará al usuario
+        mediante un mensaje en pantalla. En caso de tener ya creada la cookie deberá leerla y mostrar el mensaje anterior directamente. Deberá proporcionar también un enlace para borrar la cookie (lo que podríamos llamar 'Cerrar Sesión').</p>
+
+    <div id="texto" style="font-size:15px;">
+        <p>Sit ex incididunt anim magna consectetur adipisicing Lorem irure. Fugiat aliqua ullamco incididunt sint adipisicing dolor laborum adipisicing veniam ullamco esse irure cupidatat. Id mollit do veniam nulla ea. Duis aliqua laboris consequat esse
+            ullamco cupidatat deserunt pariatur sunt laboris. Consequat dolor laboris ex qui deserunt sit reprehenderit officia laborum. Officia dolore deserunt mollit est aute pariatur do minim nostrud quis labore aliquip. Eu et deserunt pariatur mollit
+            sint nostrud culpa eiusmod officia. Elit ad occaecat aute adipisicing aliqua ex commodo pariatur id nisi labore duis in. Ipsum duis adipisicing consequat est duis esse irure ea voluptate cupidatat irure nisi ut.</p>
+    </div>
+    <input id="input" type="text" autofocus>
+    <button id="boton" onclick="crearCookie()">Este es el mejor boton de tu vida</button>
+    <button id="boton" onclick="borrarCookie()">Este es el mejor boton de tu vida y que además cierra sesión</button>
+    <div id="botones">
+        <div>
+            <h2>Menú de administrador</h2>
+            <h3>Administrar tamaño de fuente</h3>
+            <button class="font" onclick="zoomIn()">Aumenta el tamaño del texto</button>
+            <button class="font" onclick="zoomOut()">Disminuye el tamaño del texto</button>
+        </div>
+        <div>
+            <h3>Administrar color de fondos</h3>
+            <button class="bg" onclick="colorFondo()">Cambia el color del fondo</button>
+            <button class="bg" onclick="nullFondo()">Dejar el fondo por defecto</button>
+        </div>
+        <div>
+            <h3>Administrar color de parrafos</h3>
+            <button class="par" onclick="colorParrafo()">Cambia el color del parrafo</button>
+            <button class="par" onclick="nullParrafo()">Deja el parrafo por defecto</button>
+        </div>
+        <div id="defecto"><button onclick="Default()">Por defecto</button></div>
+    </div>
+    <script>
+        let nombre;
+        let prueba;
+
+        function crearCookie() {
+            if (document.cookie == '') {
+                nombre = document.getElementById('input').value;
+                prueba = nombre;
+                document.cookie = `username=${nombre};path=/;max-age=${ 5 * 3};`;
+                alert(`Es tu primera vez ${nombre} , y se ha guardado la cookie`);
+                document.getElementById("botones").style.visibility = 'visible';
+            } else {
+                nombre = document.getElementById('input').value;
+                if (prueba == nombre) {
+                    alert(`Hola ${nombre} de nuevo'`);
+                    document.getElementById("botones").style.visibility = 'visible';
+                } else {
+                    alert(`¿quién eres y que has hecho con ${prueba} ?`);
+                    document.getElementById("botones").style.visibility = 'hidden';
+                }
+            }
+        }
+
+        function borrarCookie() {
+            document.cookie = `username= ${nombre};expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+            document.getElementById("botones").style.visibility = 'hidden';
+            document.body.style.cssText = `null`;
+        }
+
+        function colorFondo() {
+            document.body.style.backgroundColor = `rgb(${Math.floor(Math.random() * (256 - 0))},${Math.floor(Math.random() * (256 - 0))},${Math.floor(Math.random() * (256 - 0))})`;
+        }
+
+        function nullFondo() {
+            document.body.style.backgroundColor = `white`;
+        }
+
+        function zoomIn() {
+            let texto = document.getElementById("texto");
+            let tamano = parseFloat(texto.style.fontSize);
+            console.log(tamano);
+            texto.style.fontSize = `${tamano + 2}px`;
+        }
+
+        function zoomOut() {
+            let texto = document.getElementById("texto");
+            let tamano = parseFloat(texto.style.fontSize);
+            console.log(tamano)
+            texto.style.fontSize = `${tamano - 2}px`;
+        }
+
+        function colorParrafo() {
+            document.getElementById("texto").style.backgroundColor = `rgb(${Math.floor(Math.random() * (256 - 0))},${Math.floor(Math.random() * (256 - 0))},${Math.floor(Math.random() * (256 - 0))})`;
+        }
+
+        function nullParrafo() {
+            document.getElementById("texto").style.backgroundColor = `white`;
+        }
+
+        function Default() {
+            let array = [document.getElementById('texto'), document.body]
+            array.forEach(function(element) {
+                element.style.cssText = `null`
+            }, this);
+        }
+    </script>
+
+
+</body>
+
+</html>

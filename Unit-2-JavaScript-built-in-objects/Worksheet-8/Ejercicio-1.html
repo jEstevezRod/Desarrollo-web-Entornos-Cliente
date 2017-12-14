@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>tu careto 3d</title>
+    <style>
+        #video {
+            display: block;
+            width: 1080px;
+            height: 720px;
+            background: #666;
+            margin: 0 auto;
+        }
+
+        #canvas {
+            width: 1080px;
+            height: 920px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <p>1. Captura video mediante tu webcam y muestralo en la web</p>
+
+    <script>
+        var video;
+        var canvas;
+
+        function startStream() {
+
+            video = document.querySelector('#video');
+            canvas = document.querySelector('#canvas');
+
+
+            navigator.getMedia = (navigator.getUserMedia ||
+                navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                navigator.msGetUserMedia);
+
+            navigator.getMedia({
+                    video: true
+                },
+                function(stream) {
+                    if (navigator.mozGetUserMedia) {
+                        video.mozSrcObject = stream;
+                    } else {
+                        video.src = window.URL.createObjectURL(stream);
+                    }
+                    video.play();
+                },
+
+                function(err) {
+                    console.log("An error occured! " + err);
+                }
+            );
+        };
+        startStream();
+
+    </script>
+
+    <video id="video"></video>
+    <canvas id="canvas"></canvas>
+
+</body>
+
+</html>

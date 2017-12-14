@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> yunit chou esersais wan</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Escribir un procedimiento que lea una palabra y la escriba (formateada dentro de una tabla) como se ve en la figura: </p>
+
+    <script>
+        function tablaPalabra(cad_arg) {
+            document.write("<table>");
+
+            document.write("<tr>");
+            for (char of cad_arg) document.write(`<td>${char}</td>`);
+            document.write("</tr>");
+
+            for (let i = 1; i < cad_arg.length - 1; i++) {
+                document.write("<tr>");
+                document.write(`<td>${cad_arg[i]}</td>`);
+                for (let j = 0; j < cad_arg.length - 2; j++) document.write('<td></td>');
+                document.write(`<td>${cad_arg[cad_arg.length - i - 1]}</td>`);
+                document.write("</tr>");
+            }
+
+            document.write("<tr>");
+            for (char of invierteCadena(cad_arg)) document.write(`<td>${char}</td>`);
+            document.write("</tr>");
+
+            document.write("</table>");
+        };
+
+        tablaPalabra("CARACULO ");
+
+    </script>
+</body>
+
+</html>

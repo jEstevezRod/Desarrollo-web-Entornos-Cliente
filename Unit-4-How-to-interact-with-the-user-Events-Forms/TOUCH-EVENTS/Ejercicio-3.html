@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #myElement {
+            background: silver;
+            height: 300px;
+            text-align: center;
+            font: 30px/300px Helvetica, Arial, sans-serif;
+        }
+        
+        #info {
+            font-family: Calibri Light;
+            font-size: 150%;
+            color: rgb(14, 99, 179);
+            text-align: center;
+        }
+        
+        #texto {
+            font-family: calibri light;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myElement"></div>
+    <div id="info">Puedes presionar cualquier zona gris </div>
+    <div id="texto"></div>
+
+
+
+    <script src="https://hammerjs.github.io/dist/hammer.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var blue = document.getElementById('myElement');
+        var texto = document.getElementById('texto');
+        var hammer = new Hammer.Manager(blue);
+        var press = new Hammer.Press();
+
+        hammer.add(press);
+
+        hammer.on('press', function() {
+            texto.innerHTML += "Me estas haciendo daño :( <br/>";
+        });
+
+        hammer.on('pressup', function() {
+            texto.innerHTML += "Gracias por parar humano <br/><br/>";
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

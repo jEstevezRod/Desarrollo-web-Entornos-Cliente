@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>caca de vaca de la blanda, pero algo mas dura</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>8. Crea una web en la que cada vez que se accede se muestre una imagen (de modo aleatorio) de entre 3 posibles.
+    </p>
+
+    <script>
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        };
+
+        function randomImg() {
+            var imagenes = ['https://sinusoid.es/python-avanzado/python-logo.png',
+                'https://realpython.com/learn/python-first-steps/images/pythonlogo.jpg',
+                'https://www.agriya.com/blog/wp-content/uploads/2016/07/nodejs-vs-python.png'
+            ];
+            document.write('<img src="' + imagenes[random(0, imagenes.length)] + '" style="display:block; margin:0 auto; width:100%; max-width: 450px;" />');
+        };
+
+        randomImg();
+
+    </script>
+</body>
+
+</html>

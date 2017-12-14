@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>caca de vaca de la blanda</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p> 3. Utilizando setTimeout() creo un contador hacía atrás de 60 segundos.</p>
+
+    <script>
+        var num = 60;
+
+        function contador() {
+            if (num == 0) {
+                window.clearTimeout(0);
+                console.log('Se acabó lo que se daba')
+            } else {
+                setTimeout(contador, 1000);
+            }
+            console.log(num);
+            num--;
+        };
+
+        contador();
+
+    </script>
+</body>
+
+</html>

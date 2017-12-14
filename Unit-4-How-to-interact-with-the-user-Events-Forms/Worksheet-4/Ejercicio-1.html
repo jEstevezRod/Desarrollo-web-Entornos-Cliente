@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>1) Diseña una web que hará uso de cookies para guardar el nombre del usuario. En caso de no tener ninguna cookie de ese sitio, deberá preguntar el nombre del usuario y almacenarlo en una cookie que caducará en 5 minutos. Tras esto saludará al usuario
+        mediante un mensaje en pantalla. En caso de tener ya creada la cookie deberá leerla y mostrar el mensaje anterior directamente. Deberá proporcionar también un enlace para borrar la cookie (lo que podríamos llamar 'Cerrar Sesión').</p>
+
+    <input id="input" type="text">
+    <button id="boton" onclick="crearCookie()">Este es el mejor boton de tu vida</button>
+    <button id="boton" onclick="borrarCookie()">Este es el mejor boton de tu vida y que además cierra sesión</button>
+
+    <script>
+        let nombre;
+        let prueba;
+
+        function crearCookie() {
+            if (document.cookie == "") {
+                nombre = document.getElementById('input').value;
+                prueba = nombre;
+                document.cookie = `username=${nombre};path=/;max-age=${ 5 * 3};`;
+                alert(`Es tu primera vez ${nombre} , y se ha guardado la cookie`);
+                console.log(document.cookie);
+            } else {
+                nombre = document.getElementById('input').value;
+                if (prueba == nombre) {
+                    alert(`Hola ${nombre} de nuevo'`);
+                } else {
+                    alert(`¿quién eres y que has hecho con ${nombre} ?`);
+                }
+            }
+        }
+
+        function borrarCookie() {
+            document.cookie = `username= ${nombre};expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+        }
+    </script>
+
+
+</body>
+
+</html>

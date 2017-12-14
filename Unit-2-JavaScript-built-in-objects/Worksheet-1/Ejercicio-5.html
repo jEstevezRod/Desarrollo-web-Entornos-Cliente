@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>caca de vaca de la blanda</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p> Usando el objeto Date, sus métodos getHours, getMinutes y GetSeconds y el método setTimeout() crea un reloj que se actualice cada segundo.</p>
+
+    <script>
+        function clock() {
+            var fechaHoy = new Date();
+
+            var horas = fechaHoy.getHours();
+            if (horas < 10) {
+                horas = "0" + horas
+            };
+            var minutos = fechaHoy.getMinutes();
+            if (minutos < 10) {
+                minutos = "0" + minutos
+            };
+            var segundos = fechaHoy.getSeconds();
+            if (segundos < 10) {
+                segundos = "0" + segundos
+            };
+
+            console.log('La hora es ' + horas + ":" + minutos + ":" + segundos);
+            setTimeout(clock, 1000);
+        };
+
+        clock();
+
+    </script>
+</body>
+
+</html>

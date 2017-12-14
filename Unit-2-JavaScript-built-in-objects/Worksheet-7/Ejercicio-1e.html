@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>fsafdsfdsfdsgdsg</title>
+    <style>
+        #mapa {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="mapa"></div>
+    <script>
+        var locations = [] // Array donde se van a ir guardando las nuevas coordenadas
+        var mapa;
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Labels para los nuevos marcadores
+        var ñ = 0
+
+
+        function posicion() { // Comprueba si está la geolocalizacion activada en el navegador 
+            if ("geolocation" in navigator) {
+                return navigator.geolocation.getCurrentPosition(Mapa);
+            } else {
+                document.write('Desactivado');
+            }
+        };
+
+        function Mapa(position) {
+            var puenteGenil = { //Coordenadas de Puente Genil
+                lat: 37.4059907250361,
+                lng: -4.7573702171
+            }
+            var triana = { // Coordenadas de Puente de Triana
+                lat: 37.38628331213536,
+                lng: -6.002475000000004
+            }
+            var pos = { // Mi posicion
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            mapa = new google.maps.Map(document.getElementById('mapa'), { // crea mapa con sus respectivos atributos
+                zoom: 9,
+                center: pos
+            });
+
+            var marker = new google.maps.Marker({ // marker en mi posicion actual
+                position: pos,
+                map: mapa
+            });
+            var marker = new google.maps.Marker({ // marker en la la segunda posicion
+                position: puenteGenil,
+                map: mapa
+            });
+
+            getDistanceFromLatLonInKm(pos.lat, pos.lng, puenteGenil.lat, puenteGenil.lng) // calcula la distancia entre los dos puntos
+
+
+
+        };
+
+        /*function getLocation() { // Va actualizando la posicion actual [guardandola en una array] y va calculando la distancia respecto a la posicion inicial
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+                locations.push({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+            });
+            
+            getDistanceFromLatLonInKm(locations[0].lat, locations[0].lng, locations[(locations.length - 1)].lat, locations[(locations.length - 1)].lng)
+
+            var marker = new google.maps.Marker({  // Coloca un nuevo marker en la nueva posicion y va etiquetandolo con el array labels
+                position: locations[locations.length - 1],
+                map: mapa,
+                label: labels.substr(ñ, 1)
+            });
+            ñ++;
+
+        };
+        setInterval(getLocation, 3000);
+        */
+
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+            var R = 6371;
+            var dLat = (lat2 - lat1) * (Math.PI / 180);
+            var dLon = (lon2 - lon1) * (Math.PI / 180);
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            console.log("La distancia entre el punto inicial y el ultimo actualizado es " + d + " kilómetros.");
+        };
+
+        /*
+        
+        var puente genil = {lat: 37.4059907250361,lng: -4.7573702171}
+        */
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi0TplbIYCey3l9FmUQGSQPoRgXTiq01M&callback=posicion">
+
+
+    </script>
+</body>
+
+</html>

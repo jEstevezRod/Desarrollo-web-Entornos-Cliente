@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Buscaminas v23.10.2017</title>
+    <style>
+        body {
+            background: #9db3bb;
+        }
+        
+        #time {
+            font-family: Calibri Light;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <p id="time"></p>
+
+    <script>
+        class Celda {
+            constructor() {
+                this.descubierta = false;
+                this.bomba = false;
+                this.proximidad = 0;
+                this.ID = 0;
+                this.revisada = false;
+
+            };
+        };
+
+        class Tablero {
+
+            constructor() {
+                this.matriz = new Array(new Array(8), new Array(8), new Array(8), new Array(8), new Array(8), new Array(8), new Array(8), new Array(8));
+                this.numBombas = 10;
+                this.cont = 0;
+                this.randlist = new Array();
+                this.bombas = new Array();
+                this.activo = true;
+            };
+
+            dibujar() {
+                document.write("<table border='1' cellspacing='0' align='center' bgcolor='#008080' >");
+                for (var i = 0; i <= 7; i++) {
+                    document.write("<tr bgcolor='#008080' height='40'>");
+                    for (var j = 0; j <= 7; j++) {
+                        document.write("<td id='casilla" + this.cont + "' align='center' width='40'></td>");
+                        this.cont++
+                    };
+                };
+                document.write("</tr>");
+                document.write("</table>");
+            };
+
+            generarCeldas() {
+                for (var fila = 0; fila < this.matriz.length; fila++) {
+                    for (var columna = 0; columna < this.matriz[fila].length; columna++) {
+                        this.matriz[fila].fill(new Celda(), columna, columna + 1);
+                    };
+                };
+            };
+
+            ponerBombas(numBombas) {
+                for (var index = 0; index < 65; index++) {
+                    this.randlist.push(index)
+                }
+                for (var bom = 0; bom < numBombas; bom++) {
+                    var indice = Math.floor(Math.random() * this.randlist.length);
+                    var number = this.randlist[indice];
+                    this.randlist.splice(indice, 1);
+                    for (var t = 0; t < this.matriz.length; t++) {
+                        for (var i = 0; i < this.matriz[t].length; i++)
+                            if (this.matriz[t][i].ID == number && this.matriz[t][i].bomba == false) {
+                                this.matriz[t][i].bomba = true;
+                                this.matriz[t][i].proximidad = "bum!";
+                                this.bombas.push(this.matriz[t][i])
+                            }
+                        console.log(number)
+
+                    };
+                };
+                console.log(this.bombas)
+            };
+
+
+            asignarProximidad() {
+                for (var t = 0; t < this.matriz.length; t++) {
+                    for (var i = 0; i < this.matriz[t].length; i++) { // Con estos dos 'for' itero todas las celdas  
+                        if (this.matriz[t][i].bomba == true) { // Busco las celdas que sean bombas
+                            for (var index = -1; index < 2; index++) {
+                                for (var index2 = -1; index2 < 2; index2++) { // Con estos dos 'for' itero de forma circundante a la bomba
+                                    if ((t + index) >= 0 && (t + index) < this.matriz.length) {
+                                        if ((i + index2) >= 0 && (i + index2) < this.matriz.length) { // Con estos dos 'if' especifico que no se pueda salir del tablero
+                                            if (this.matriz[t + index][i + index2].bomba == false) { // Compruebo que no sea una bomba 
+                                                this.matriz[t + index][i + index2].proximidad++; // Suma un contador cada vez que haya una bomba cerca.
+
+                                            };
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+
+            asignarID() {
+                var con = 0;
+                for (var index = 0; index < this.matriz.length; index++) {
+                    for (var indexx = 0; indexx < this.matriz[index].length; indexx++) {
+                        this.matriz[index][indexx].ID = con;
+                        con++;
+                    };
+                };
+            };
+
+            seleccionarCelda(i, j) {
+                this.i = i
+                this.j = j
+                if (this.matriz[this.i][this.j].proximidad == "bum!") {
+                    var x = this.matriz[this.i][this.j].ID
+                    document.getElementById("casilla" + x).innerHTML = "<img src='bomba.png' width='30' height='30'></img>";
+                } else if (this.matriz[this.i][this.j].proximidad == 0) {
+                    var y = this.matriz[this.i][this.j].ID
+                    document.getElementById("casilla" + y).innerHTML = '.';
+                } else {
+                    var z = this.matriz[this.i][this.j].ID;
+                    document.getElementById("casilla" + z).innerHTML = this.matriz[this.i][this.j].proximidad;
+                }
+                this.matriz[this.i][this.j].descubierta = true;
+                if (this.matriz[this.i][this.j].proximidad == "bum!") {
+                    this.active = false;
+                    c.mostrarTablero();
+                    alert("Perdiste, hamijo")
+                    t.detenerTiempo(stop)
+                    document.getElementById("time").innerHTML = "Tiempo: 00:00";
+                };
+                if (this.matriz[this.i][this.j].proximidad == 0) {
+                    this.matriz[this.i][this.j].descubierta = true;
+                    c.expandir(this.i, this.j);
+                };
+            };
+
+            expandir(i, j) {
+                for (var index = -1; index < 2; index++) {
+                    for (var index2 = -1; index2 < 2; index2++) { // Con estos dos 'for' itero de forma circundante a la bomba
+                        if ((i + index) >= 0 && (i + index) < this.matriz.length) {
+                            if ((j + index2) >= 0 && (j + index2) < this.matriz.length) { // Con estos dos 'if' especifico que no se pueda salir del tablero
+                                if (this.matriz[i + index][j + index2].proximidad == 0 && this.matriz[i + index][j + index2].descubierta == false) {
+                                    this.matriz[i + index][j + index2].descubierta = true;
+                                    if (this.matriz[i + index][j + index2].proximidad == 0) {
+                                        var y = this.matriz[i + index][j + index2].ID
+                                        document.getElementById("casilla" + y).innerHTML = '.';
+                                    } else {
+                                        var z = this.matriz[i + index][j + index2].ID;
+                                        document.getElementById("casilla" + z).innerHTML = this.matriz[i + index][j + index2].proximidad;
+                                    }
+                                    c.expandir(i + index, j + index2);
+                                } else if (this.matriz[i + index][j + index2].proximidad > 0 && this.matriz[i + index][j + index2].descubierta == false) {
+                                    this.matriz[i + index][j + index2].descubierta = true;
+                                    if (this.matriz[i + index][j + index2].proximidad == 0) {
+                                        var r = this.matriz[i + index][j + index2].ID
+                                        document.getElementById("casilla" + r).innerHTML = '.';
+                                    } else {
+                                        var p = this.matriz[i + index][j + index2].ID;
+                                        document.getElementById("casilla" + p).innerHTML = this.matriz[i + index][j + index2].proximidad;
+                                    }
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+
+            mostrarTablero() {
+                for (var t = 0; t < this.matriz.length; t++) {
+                    for (var i = 0; i < this.matriz[t].length; i++) {
+                        if (this.matriz[t][i].proximidad == "bum!") {
+                            var x = this.matriz[t][i].ID
+                            document.getElementById("casilla" + x).innerHTML = "<img src='bomba.png' width='30' height='30'></img>";
+                        } else if (this.matriz[t][i].proximidad == 0) {
+                            var y = this.matriz[t][i].ID
+                            document.getElementById("casilla" + y).innerHTML = ".";
+                        } else {
+                            var z = this.matriz[t][i].ID;
+                            document.getElementById("casilla" + z).innerHTML = this.matriz[t][i].proximidad;
+                        }
+                    };
+                };
+            };
+        };
+
+        class Tiempo {
+            constructor() {
+                var stop;
+            }
+
+            tiempoRestante(duration) {
+                var timer = duration,
+                    minutes, seconds;
+                stop = setInterval(function() {
+                    minutes = parseInt(timer / 60, 10)
+                    seconds = parseInt(timer % 60, 10);
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    document.getElementById("time").innerHTML = "Tiempo: " + minutes + ":" + seconds;
+                    if (timer-- < 0 || Tablero.active == false) {
+                        document.getElementById("time").innerHTML = "Tiempo: 00:00";
+                        alert("SE ACABÓ LO QUE SE DABA")
+                        t.detenerTiempo(stop)
+                    }
+                }, 1000);
+            };
+            detenerTiempo(id) {
+                clearInterval(id);
+                document.close()
+            };
+        };
+
+
+        var b = new Celda();
+        var c = new Tablero();
+        var t = new Tiempo();
+        c.generarCeldas();
+        c.asignarID();
+        c.ponerBombas(10);
+        c.asignarProximidad();
+        c.dibujar();
+        t.tiempoRestante(120);
+    </script>
+
+
+
+</body>
+
+</html>

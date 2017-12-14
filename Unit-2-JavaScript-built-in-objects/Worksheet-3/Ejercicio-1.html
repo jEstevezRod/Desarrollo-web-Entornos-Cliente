@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> yunit chou esersais wan</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>Crea las siguientes funciones y llámalas desde una página XHTML para mostrar su funcionamiento: </p>
+    <p>a) invierteCadena(cad_arg): devuelve invertida una cadena dada por el usuario</p>
+    <p>b) inviertePalabras(cad_arg): devuelve invertidas las palabras contenidas en la cadena.</p>
+    <p>c) encuentraPalabraMasLarga(cad_arg): para una cadena de caracteres dada devuelve la longitud de la palabra m s larga en ella contenida</p>
+    <p>d) fltraPalabrasMasLargas(cad_arg, i): para una cadena de caracteres y un valor num rico (i), devuelva el n mero de palabras cuya longitud es mayor a i.</p>
+    <p>e) cadenaBienFormada(cad_arg): formatea correctamente la cadena pasada, de tal modo que s lo aparece en may scula la primera letra y el resto en ó ú min scula.</p>
+
+    <script>
+        function invierteCadena(cad_arg) {
+            var inver = '';
+            for (var i = cad_arg.length - 1; i >= 0; i--) {
+                inver += cad_arg[i]
+            };
+            return inver
+
+        };
+        console.log(invierteCadena('Me llamo Jesus Estevez'));
+
+        function inviertePalabras(cad_arg) {
+            var split = cad_arg.split(' ');
+            var inver = '';
+            for (var i = split.length - 1; i >= 0; i--) {
+                inver += split[i] + ' '
+            };
+            return inver;
+
+        };
+        console.log(inviertePalabras('esto es una prueba gato perro'));
+
+        var encuentraPalabraMasLarga = (cad_arg) => {
+            var split = cad_arg.split(' ');
+            var long = 0;
+            for (palabra of split) {
+                if (palabra.length > long) {
+                    long = palabra.length
+                };
+            };
+            return long;
+        };
+        console.log(encuentraPalabraMasLarga('no se que poner, aburrimiento'));
+
+        function fltraPalabrasMasLargas(cad_arg, i) {
+            var split = cad_arg.split(' ');
+            var cont = 0;
+            for (palabra of split) {
+                if (palabra.length > i) {
+                    cont++;
+                }
+            };
+            return cont;
+        };
+        console.log(fltraPalabrasMasLargas('esto es una prueba para ver si este dichoso y asqueros ejercicio funciona de una puta vez', 5));
+
+        function cadenaBienFormada(cad_arg) {
+            var chis = cad_arg[0].toUpperCase();
+            for (var i = 1; i < cad_arg.length; i++) {
+                chis += cad_arg[i].toLowerCase()
+            };
+            return chis;
+        };
+        console.log(cadenaBienFormada('otra DiChoSa PrueBa'));
+
+    </script>
+</body>
+
+</html>

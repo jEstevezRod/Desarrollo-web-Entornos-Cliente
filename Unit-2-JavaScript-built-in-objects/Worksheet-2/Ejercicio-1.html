@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>caca de vaca de la blanda, pero algo mas dura</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>EJERCICIOS - OBJETO MATH 1. Crea una pagina en la que se muestre: Un numero aleatorio entre 0 y 1. Igual pero entre 100 y 200. Pide dos valores al usuario y genera un numero aleatorio entre esos dos valores.
+
+    </p>
+
+    <script>
+        console.log(Math.round(Math.random()));
+        console.log(Math.floor(Math.random() * (200 - 100)) + 100);
+
+        var min = parseInt(prompt("Dime un numero minimo"));
+        var max = parseInt(prompt("Dime un numero maximo"));
+
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        };
+        document.write(random(min, max));
+
+    </script>
+</body>
+
+</html>

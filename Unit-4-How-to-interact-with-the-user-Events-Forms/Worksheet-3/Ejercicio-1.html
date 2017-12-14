@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Validación de Formulario</title>
+    <style>
+        div {
+            padding: 50px 10px 30px 45px;
+            background-color: rgb(255, 255, 211);
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="formu" action="/my-handling-form-page" method="post">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="name" name="nombre" onblur="validar_nombre()" required autofocus/>
+        </div>
+        <div>
+            <label for="apellido">Apellidos:</label>
+            <input type="text" id="apellido" name="apellido" onblur="validar_apellidos()" required/>
+        </div>
+        <div>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" onblur="validar_dni()" required />
+        </div>
+        <div>
+            <label for="phone">Telefono:</label>
+            <input type="text" id="phone" name="phone" onblur="validar_telefono()" required/>
+        </div>
+        <div>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" onblur="validar_email()" required/>
+        </div>
+        <div>
+            <label for="usuario">Nombre de usuario:</label>
+            <input id="user" name="usuario" id="user" onblur="validar_usuario()" required>
+        </div>
+
+        <div class="button">
+            <button type="button" value="Enviar" onblur="validar_nombre()">Validate</button>
+        </div>
+    </form>
+
+
+    <script>
+        var form = document.getElementById("formu");
+
+        function validar_nombre() {
+            var fnombre = form.nombre.value;
+            var regexpNombre = /^[a-zA-Z ]+$/;
+            if (regexpNombre.test(fnombre)) {
+                document.getElementById("name").style.backgroundColor = "green";
+            } else {
+                document.getElementById("name").style.backgroundColor = "red";
+            }
+        }
+
+        function validar_apellidos() {
+            var fapellido = form.apellido.value;
+            var regexpApellido = /^[a-zA-Z ]+$/;
+            if (regexpApellido.test(fapellido)) {
+                document.getElementById("apellido").style.backgroundColor = "green";
+            } else {
+                document.getElementById("apellido").style.backgroundColor = "red";
+            }
+        }
+
+        function validar_dni() {
+            var fdni = form.dni.value;
+            var regexpDni = /^\d{8}([A-Z])$/;
+            if (regexpDni.test(fdni)) {
+                document.getElementById("dni").style.backgroundColor = "green";
+            } else {
+                document.getElementById("dni").style.backgroundColor = "red";
+            }
+        }
+
+        function validar_email() {
+            var fmail = form.mail.value;
+            var regexpEmail = /[a-z0-9!#$%&’*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&’*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|es|name|aero|jobs|museum)\b/;
+            if (regexpEmail.test(fmail)) {
+                document.getElementById("mail").style.backgroundColor = "green";
+            } else {
+                document.getElementById("mail").style.backgroundColor = "red";
+            }
+        }
+
+        function validar_telefono() {
+            var fphone = form.phone.value;
+            var regexpTelefono = /^[9|6|8]{1}\d{8}$/;
+            if (regexpTelefono.test(fphone)) {
+                document.getElementById("phone").style.backgroundColor = "green";
+            } else {
+                document.getElementById("phone").style.backgroundColor = "red";
+            }
+        }
+
+        function validar_usuario() {
+            var fuser = form.user.value;
+            var regexpUser = /^(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/
+            if (regexpUser.test(fuser)) {
+                document.getElementById("user").style.backgroundColor = "green";
+            } else {
+                document.getElementById("user").style.backgroundColor = "red";
+            }
+        }
+    </script>
+</body>
+
+</html>

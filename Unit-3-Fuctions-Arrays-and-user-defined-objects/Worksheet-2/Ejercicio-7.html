@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 7</title>
+</head>
+
+<body>
+    <p>Escribe las funciones para llevar a cabo las siguientes operaciones para un array de una dimensión:
+    </p>
+    <p>a) Establecer los 10 elementos del array a cero.</p>
+    <p>b) Añadir 1 a cada uno de los elementos del array.</p>
+    <p>c) Muestra los valores del array separados por espacios.</p>
+
+    <script>
+        function acero(lista) {
+            lista.forEach(function(part, index) {
+                lista[index] = 0;
+            })
+            return lista;
+        };
+        caca = [4, 5, 6, 4]
+        console.log(acero(caca));
+
+        function sumauno(lista) {
+            lista.forEach(function(part, index) {
+                lista[index]++;
+            })
+            return lista;
+        };
+
+        function espacios(lista) {
+            lista.join(' ');
+        };
+    </script>
+</body>
+
+</html>

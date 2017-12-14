@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> yunit chou esersais wan</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>2. Definir una funcion que muestre informacion sobre una cadena de texto que se le pasa como argumento. A partir de la cadena que se le pasa, la funcion determina si esa cadena esta formada solo por mayusculas, solo por minusculas o por una mezcla de ambas. </p>
+
+    <script>
+        function Mayus(cad) {
+            for (char of cad) {
+                if (char == char.toUpperCase()) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        function Minus(cad) {
+            for (char of cad) {
+                if (char === char.toLowerCase()) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        function Solucion(cad) {
+            if (Mayus(cad)) {
+                return 'Son mayusculas';
+            } else if (Minus(cad)) {
+                return 'Son minusculas';
+            } else {
+                return 'Mezcla de mayusculas y minusculas';
+            }
+        };
+        console.log(Solucion('JAJAJAJAJAJAJAAJJ'));
+
+    </script>
+</body>
+
+</html>

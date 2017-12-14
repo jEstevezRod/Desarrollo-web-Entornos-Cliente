@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> WORKSHEET 6</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>2. Crea una pagina que contenga varios enlaces, imagenes y anclas de ejemplo y añade una serie de enlaces que realicen lo siguiente:
+    </p>
+    <script>
+        function numImg() {
+            return document.images.length;
+        };
+        console.log("Cantidad de Imágenes: " + numImg());
+
+        function firstImageId() {
+            var elem = document.images.item(0);
+            if (elem !== null && elem.id !== undefined) {
+                return elem.id;
+            }
+            return "none";
+        };
+        console.log("ID de la Primera Imagen: " + firstImageId());
+
+        function numLinks() {
+            return document.links.length;
+        };
+        console.log("Cantidad de Links: " + numLinks());
+
+        function cambiarTitle(new_title) {
+            document.title = new_title;
+        };
+
+        cambiarTitle("JESUS ESTEVEZ");
+
+    </script>
+
+</body>
+
+</html>

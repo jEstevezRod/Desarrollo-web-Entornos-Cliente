@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>caca de vaca de la blanda, pero algo mas dura</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>5. Crea una web para resolver ecuaciones de segundo grado. Debera pedir por tanto los coeficientes y mostrar las soluciones posibles.
+
+    </p>
+
+    <script>
+        function funcionSegundoGrado(a, b, c) {
+            var sol1 = parseFloat((-b + (Math.sqrt((b ** 2) - (4 * a * c)))) / (2 * a));
+            var sol2 = parseFloat((-b - (Math.sqrt((b ** 2) - (4 * a * c)))) / (2 * a));
+            return ['Solucion 1: ' + sol1 + '<br />', 'Solucion 2: ' + sol2];
+        };
+        document.write(funcionSegundoGrado(5, -7, 2));
+
+    </script>
+</body>
+
+</html>

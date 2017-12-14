@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EJERCICIO 5</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            padding-top: 100;
+            width: 1300px;
+            margin: 0 auto;
+            font-size: 120%;
+            font-family: Calibri Light;
+        }
+    </style>
+
+</head>
+
+<body onload="dibujarTabla()">
+
+
+    <script>
+        function dibujarTabla() {
+            document.close()
+            document.write("<center><button id='boton'  style='position:absolute; left: 50%;' onclick='actualizacion()'>Resetea el lienzo</button></center>")
+            document.write("<table id='tabla cellspacing='0' align='center' style='box-shadow: 10px 10px 5px #888888;'>");
+            for (var i = 0; i <= 100; i++) {
+                document.write("<tr bgcolor='#FFFFFF' height='10'>");
+                for (var j = 0; j <= 100; j++) {
+                    document.write("<td onmousemove='colorear(this)' width='10'></td>");
+                };
+            };
+            document.write("</tr>");
+            document.write("</table>");
+        }
+
+        function colorear(e) {
+            var ctrlKeyPressed = event.ctrlKey
+
+            var shiftKeyPressed = event.shiftKey
+
+
+            if (shiftKeyPressed == 1) {
+                e.style.backgroundColor = "blue";
+            }
+
+            if (ctrlKeyPressed == 1) {
+                e.style.backgroundColor = "red";
+            }
+        }
+
+
+        function actualizacion() {
+            dibujarTabla()
+            document.getElementById("boton").innerHTML = document.getElementById("boton").innerHTML
+        };
+    </script>
+
+</body>
+
+</html>

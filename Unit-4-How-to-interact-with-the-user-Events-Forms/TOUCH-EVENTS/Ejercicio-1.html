@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Calibri Light;
+            font-size: 140%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>1. Prueba los touch events. Para ello coloca un div y muestra la coordenada 'x' e 'y' en la que se pulsa</p>
+    <p>2. Mejora el ejercicio anterior prar que muestre la informacion de tantos puntos como soporte mi pantalla</p>
+    <p>3. Haz un ejemplo basico de uso de la libreria HAMMER</p>
+
+    <div id="touchzone" style="border: 1px solid black; width:400px; height:400px;"></div>
+    <div id="coords"></div>
+
+
+    <script type="text/javascript">
+        function init() {
+            var touchzone = document.getElementById("touchzone");
+            touchzone.addEventListener("touchstart", touchHandler, false);
+        }
+
+        function touchHandler(event) {
+            var coords = document.getElementById("coords");
+            coords.innerHTML = 'Coordenada x: ' + parseInt(event.touches[0].pageX) + ', Coordenada y: ' + parseInt(event.touches[0].pageY);
+        }
+
+        init()
+    </script>
+</body>
+
+</html>

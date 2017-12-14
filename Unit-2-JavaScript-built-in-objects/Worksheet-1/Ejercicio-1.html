@@ -1,0 +1,51 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> yunit chou esersais wan</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p> Realiza una página que cree un objeto de tipo Date y muestre en la página la siguiente información (cada una en una línea): </p>
+    <ol>
+        <li>Año actual</li>
+        <li>Mes actual</li>
+        <li>Día actual</li>
+        <li>Hora actual</li>
+        <li>Minutos actuales</li>
+        <li>Segundos actuales</li>
+    </ol>
+
+    <script>
+        var año = new Date();
+        document.write("El año actual es " + año.getFullYear());
+        document.write("<br />");
+        var mes = new Date();
+        document.write("El mes actual es " + (mes.getMonth() + 1) + ", es decir Octubre");
+        document.write("<br />");
+        var dia = new Date();
+        document.write("El dia actual es " + dia.getDate());
+        document.write("<br />");
+        var hora = new Date();
+        document.write("La hora actual es " + hora.getHours());
+        document.write("<br />");
+        var minutos = new Date();
+        document.write("Los minutos actuales " + minutos.getMinutes());
+        document.write("<br />");
+        var segundos = new Date();
+        document.write("Los segundos actuales " + segundos.getSeconds());
+        document.write("<br />");
+
+    </script>
+</body>
+
+</html>

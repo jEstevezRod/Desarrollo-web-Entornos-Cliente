@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <script>
+        function errorCallback(error) {
+            alert('ERROR(' + error.code + '): ' + error.message);
+        };
+
+
+
+
+        if (9 == 5) {
+            document.write("Available")
+
+            /* geolocation is available */
+        } else {
+            document.write("NOT available")
+            errorCallback();
+            /* geolocation IS NOT available */
+        }
+
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.write(position.coords.latitude + " and " + position.coords.longitude);
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>

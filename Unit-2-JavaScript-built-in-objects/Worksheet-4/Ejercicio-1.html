@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> WORKSHEET 4</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 50px 400px 0px 400px;
+            background: #F0F8FF;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>2. Realiza lo mismo para la información de la pantalla utilizada por el cliente.
+    </p>
+    <script>
+        function infNavigator() {
+
+            var lista = ["appName", "appCodeName", "appVersion", "battery", "connection", "cookieEnabled", "geolocation", "activeVRDisplays"];
+            document.write("<table>");
+            for (i = 0; i < lista.length; i++) {
+                document.write("<tr height= 100>");
+                document.write("<td width= 300>" + lista[i] + "</td>");
+                document.write("<td width= 300>" + navigator[lista[i]] + "</td>");
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+
+        infNavigator();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EJERCICIO 10</title>
+
+
+</head>
+
+<body>
+
+    <img id="fotito" src="fotito.png" onmousedown="cogida(this)" style="position:absolute; height:80px; width:80px">
+    <img id="fotito" src="fotito.png" onmousedown="cogida(this)" style="position:absolute; height:80px; width:80px">
+
+    <script>
+        var imgen;
+        var estaPinchada = false;
+        document.addEventListener("mousemove", mover);
+        document.addEventListener("mouseup", soltar);
+
+        function cogida(e) {
+            imgen = e;
+            estaPinchada = true;
+        }
+
+        function mover() {
+            var x = window.event.clientX;
+            var y = window.event.clientY;
+            console.log(x + " y " + y);
+            console.log(estaPinchada);
+            if (estaPinchada) {
+                imgen.vspace = window.event.clientY || event.pageY;
+                imgen.hspace = window.event.clientX || event.pageX;
+            };
+        };
+
+        function soltar() {
+            estaPinchada = false;
+        }
+
+        document.onmouseup = soltar;
+    </script>
+
+
+</body>
+
+</html>
