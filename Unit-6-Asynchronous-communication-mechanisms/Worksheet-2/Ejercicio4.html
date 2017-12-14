@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4</title>
+    <style>
+
+    </style>
+
+</head>
+<body>
+
+<div id="demo">
+
+    USERNAME: <input type="text" id="name"/>
+    <div class="button">
+        <button type="submit" onclick="valores()">Comprobar</button>
+    </div>
+    <p id="informacion"></p>
+    <br/>
+    <div class="">
+        <div id="opciones">
+            <p>Quizás te interese más:</p>
+            <p id="alternativa1" onclick="alerta(this)"></p>
+            <p id="alternativa2" onclick="alerta(this)"></p>
+            <p id="alternativa3" onclick="alerta(this)"></p>
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+
+	var valor;
+	var mensaje;
+
+
+	function valores() {
+		opciones = document.getElementById('opciones');
+		alternativa1 = document.getElementById('alternativa1');
+		alternativa2 = document.getElementById('alternativa2');
+		alternativa3 = document.getElementById('alternativa3');
+		valor = document.getElementById('name').value;
+		mensaje = document.getElementById('informacion');
+		console.log(valor);
+		loadDoc();
+	}
+
+	function alerta(elem) {
+		valor = document.getElementById('name');
+		valor.value = elem.innerHTML;
+		console.log(elem);
+		nuevovalor = document.getElementById(elem.content);
+		console.log(nuevovalor);
+		opciones.style.display = 'none';
+		mensaje.innerHTML = 'Ese nombre está disponible';
+		mensaje.style.color = 'green';
+
+	}
+
+	function loadDoc() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let variable = JSON.parse(this.responseText);
+				console.log(variable['nombre']);
+				if (valor != '') {
+					if (variable['validar'] == 'si') {
+						opciones.style.display = 'block';
+						mensaje.innerHTML = 'Ese nombre no está disponible, prueba otro';
+						alternativa1.innerHTML = variable['alternativo'][0];
+						alternativa2.innerHTML = variable['alternativo'][1];
+						alternativa3.innerHTML = variable['alternativo'][2];
+						mensaje.style.color = 'red';
+					} else {
+						mensaje.innerHTML = 'Ese nombre está perfecto';
+						opciones.style.display = 'none';
+						mensaje.style.color = 'green';
+					}
+				}
+			}
+		};
+		xhttp.open("GET", "ejercicio4.php?datos=" + valor, true);
+		xhttp.send();
+	}
+
+</script>
+
+</body>
+</html>
+
+

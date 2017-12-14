@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ejercicio 5</title>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+
+    <li>Lista 1:</li>
+    <ol>
+        <li>Tortilla</li>
+        <li>Jamón</li>
+        <li>Queso</li>
+    </ol>
+    <li>Lista 2:</li>
+    <ul>
+        <li>Coca Cola</li>
+        <li>Leche</li>
+        <li>Té</li>
+    </ul>
+
+    <button onclick="desaparecer()">No me gusta la tortilla >.<</button>
+    <button onclick="aparecer()">Ya si me gusta la tortilla uwu</button>
+
+
+
+    <script type="text/javascript">
+        function desaparecer() {
+            $('ol li:first-child').hide()
+        }
+
+        function aparecer() {
+            $('ol li:first-child').show()
+
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</body>
+
+</html>

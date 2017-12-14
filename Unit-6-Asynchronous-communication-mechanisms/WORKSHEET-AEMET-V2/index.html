@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AEMET APP v.7 </title>
+    <style>
+        .main-container {
+            width: 100%;
+            min-height: 20%;
+            display: inline-flex;
+        }
+
+        .container {
+
+            min-height: 20%;
+            padding: 30px;
+            border: 1px solid grey;
+            background-color: deepskyblue;
+
+        }
+        #CPFromMunicipio {
+        }
+
+        #mapa{
+            min-height: 800px;
+            width: 1400px;
+        }
+    </style>
+</head>
+<body onload="loadProv()">
+
+<section class="v2" onchange="Municipios()">
+    <select id="provincias">
+    </select>
+
+
+</section>
+
+<script>
+
+    var latitud;
+    var longitud;
+    var CP;
+    var Name;
+    var informacion;
+    var ajaxPetition;
+    var ajaxPetition1;
+    var ineid;
+    var ajaxPetitionMETEO;
+    var datosAEMET;
+    var Dat;
+    var Provin = document.getElementById('provincias');
+/*
+    function clearText() {
+        var param = document.getElementsByTagName('input');
+        for (var t=0; t<2;t++){
+            param[t].value = "";
+        }
+        var metdatos = document.getElementsByClassName("informasao");
+        for (var i=0; i < metdatos.length;i++) {
+            metdatos[i].innerHTML ="";
+        }
+    }
+*/
+
+    function getValues() {
+        var seleccionada = Provin.value;
+    }
+
+    function loadProv() {
+	    let value = 1;
+	    let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                try {
+                    ajaxPetition = JSON.parse(this.responseText);
+                    console.log(ajaxPetition);
+                    ajaxPetition.forEach(function (pro) {
+	                    Provin.innerHTML += "<option>"+pro.provincia+"</option>";
+                    })
+                } catch(error) {
+                    console.log(ajaxPetition);
+                }
+            }
+        }
+        xhr.open("GET", "Controlador.php?value=" + value , true);
+        xhr.send();
+    }
+
+
+    function Municipios() {
+    	let value = 2;
+	    let xhr = new XMLHttpRequest();
+	    xhr.onreadystatechange = function () {
+		    if (this.readyState == 4 && this.status == 200) {
+			    try {
+				    ajaxPetition1 = JSON.parse(this.responseText);
+				    console.log(ajaxPetition1);
+
+
+				    //ineid = String(ajaxPetition['provinciaid']).concat(String(ajaxPetition['poblacionid']));
+				    //initMap();
+				    //Meteorologia();
+			    } catch(error) {
+				    console.log(ajaxPetition1);
+			    }
+		    }
+	    }
+	    xhr.open("GET", "Controlador.php?value=" + value, true);
+	    xhr.send();
+    }
+/*
+    function Meteorologia() {
+        var usaresta = parseInt(ineid);
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                try {
+                    ajaxPetitionMETEO = JSON.parse(this.responseText);
+                    datosAEMET = ajaxPetitionMETEO.datos
+                    MeteorologiaDatos(datosAEMET);
+                } catch(error) {
+                    console.log(error)
+                }
+            }
+        }
+        xhr.open("GET", 'ControladorPHP.php?AEMET=' + usaresta, true);
+        xhr.send();
+    }
+
+    function MeteorologiaDatos(datos) {
+        var Meteo = document.getElementById("meteo");
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                try {
+                    Dat = JSON.parse(this.responseText);
+                    console.log(Dat);
+                    for (let t =0; t<3; t++) {
+                        Meteo.innerHTML += "<p><strong>Para el dia " + Dat[0].prediccion.dia[t].fecha + " :</strong></p>";
+                        Meteo.innerHTML += "<ul>Humedad relativa :  "
+                        Dat[0].prediccion.dia[t].humedadRelativa.dato.forEach(function (dato) {
+                            Meteo.innerHTML += "<li> Para las " + dato.hora + " tendra un valor de " + dato.value + " % </li>"
+                        })
+                        Meteo.innerHTML += "</ul>"
+                        Meteo.innerHTML += "<ul> Probabilidad de precipitacion";
+                        for (let i = 3; i < 7; i++) {
+                            Meteo.innerHTML += "<li>En el periodo " + Dat[0].prediccion.dia[t].probPrecipitacion[i].periodo + " hay " + Dat[0].prediccion.dia[t].probPrecipitacion[i].value + " % </li>"
+                        }
+                        Meteo.innerHTML += "</ul>";
+                        Meteo.innerHTML += "<ul> La temperatura máxima será de " + Dat[0].prediccion.dia[t].temperatura.maxima + "ºC y la mínima de " + Dat[0].prediccion.dia[t].temperatura.minima + "ºC :";
+                        Dat[0].prediccion.dia[t].temperatura.dato.forEach(function (dato) {
+                            Meteo.innerHTML += "<li> Para las " + dato.hora + " será de " + dato.value + "ºC </li>";
+                        });
+                        Meteo.innerHTML += "</ul>";
+                    }
+                } catch(error) {
+                    console.log(error)
+                }
+            }
+        }
+        xhr.open("GET", 'ControladorPHP.php?DATES=' + datos, true);
+        xhr.send();
+    }
+
+    // GEOLOCALIZACION
+
+
+    var pos;
+    var mapa;
+    var geocoder;
+    var infowindow;
+
+    function initMap() {
+        if ("geolocation" in navigator) {
+            Mapa();
+        } else {
+            document.write('Desactivado');
+        };
+    };
+
+    function Mapa() {
+        var vermapa = document.getElementById("mapa")
+        pos = {
+            lat: parseFloat(longitud),
+            lng: parseFloat(latitud)
+        };
+        console.log(pos)
+        mapa = new google.maps.Map(vermapa, {
+            zoom: 15,
+            center: pos
+        });
+
+        carl(geocoder, mapa, infowindow)
+    };
+
+    function carl(geocoder, mapa, infowindow) {
+        geocoder = new google.maps.Geocoder;
+        infowindow = new google.maps.InfoWindow;
+        geocoder.geocode({
+            'location': pos
+        }, function(results) {
+            mapa.setZoom(12);
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: mapa
+            });
+            infowindow.setContent(results[1].formatted_address);
+            infowindow.open(mapa, marker);
+
+        });
+    };
+*/
+
+    // https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/"+ CODIGOPOSTAL +"/?api_key=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqZXNlc3Ryb2QxQGdtYWlsLmNvbSIsImp0aSI6IjE5ZjQ2NzgwLTZkYjAtNDc2YS05ZTIzLTU3Yzk5ZDY1NWU3NiIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNTEyMTU4NDYwLCJ1c2VySWQiOiIxOWY0Njc4MC02ZGIwLTQ3NmEtOWUyMy01N2M5OWQ2NTVlNzYiLCJyb2xlIjoiIn0.U2j91Zca3D3HLguNxVwxzkAv3r1CHZMyXt_5QCkPkV8
+</script>
+</script>
+</body>
+</html>

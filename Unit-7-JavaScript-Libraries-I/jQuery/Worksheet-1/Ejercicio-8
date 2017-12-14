@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 8</title>
+    <style>
+        h1 {
+            font-family: Calibri Light;
+        }
+        
+        p {
+            font-family: Calibri;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <div>
+        <h1>Ea commodo minim dolore aliquip fugiat occaecat labore esse do aliqua deserunt labore.</h1>
+        <p>Aute sint esse aliquip Lorem ut cupidatat Lorem minim anim nulla. Incididunt adipisicing amet dolore exercitation est fugiat commodo est velit ex mollit quis officia. Officia sint dolore proident do adipisicing exercitation non ullamco.</p>
+    </div>
+    <div>
+        <h1>Ad id quis voluptate irure deserunt voluptate ea nostrud irure Lorem anim ea non.</h1>
+        <p>Commodo occaecat veniam ut et consectetur cillum officia aute aliquip ipsum ullamco exercitation sit. Pariatur reprehenderit esse et nulla amet. Incididunt irure ut fugiat Lorem elit veniam ex excepteur aute fugiat Lorem dolore ad consectetur.
+            Do labore do ad officia elit ipsum sint est officia do dolor quis Lorem.</p>
+    </div>
+    <div>
+        <h1>Proident consequat voluptate laboris consequat sit qui deserunt reprehenderit eu officia occaecat.</h1>
+        <p>Velit pariatur eiusmod elit non veniam dolore aliqua officia et aute sunt incididunt. Quis do id nostrud enim aute nisi veniam nostrud. Amet consectetur sint nostrud fugiat aute sit eu. Id culpa mollit consequat aliquip.</p>
+    </div>
+    <button onclick="btnFontSize()">Cambiar tamaño</button>
+    <script>
+        function btnFontSize() {
+            $('div > p').css("font-size", "+=2 px");
+        };
+
+        function hiddenNotice() {
+            $('div').on("click", function() {
+                if ($(this.children[1]).is(":visible")) {
+                    $(this.children[1]).hide();
+                } else {
+                    $(this.children[1]).show();
+                }
+            });
+        }
+
+        function hover() {
+            $("div")
+                .on("mouseenter", function() {
+                    let styles = {
+                        backgroundColor: "yellow",
+                        fontWeight: "bolder"
+                    }
+                    $(this).css(styles)
+                })
+                .on("mouseleave", function() {
+                    let styles = {
+                        backgroundColor: "white",
+                        fontWeight: ""
+                    };
+                    $(this).css(styles);
+                })
+        }
+
+
+        hiddenNotice();
+        hover();
+    </script>
+
+
+</body>
+
+</html>
