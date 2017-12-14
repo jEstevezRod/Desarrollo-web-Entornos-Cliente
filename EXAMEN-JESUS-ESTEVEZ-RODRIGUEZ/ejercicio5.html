@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input id="in" type="text" onkeydown="myFunction(event)">
+ <div id="is"></div>
+
+<script>
+    var tiempo = 3;
+
+	function myFunction(event) {
+		/* var x = window.event.keyCode
+            if (x == 13) {
+            			document.getElementById("is").innerHTML = " ";
+            			document.getElementById("is").innerHTML = "";
+            }
+*/
+		if (tiempo == 0) {
+			window.clearTimeout(0);
+			document.getElementById("is").innerHTML = " ";
+			tiempo = 3;
+		} else {
+			document.getElementById("is").innerHTML = "esta escribiendo...";
+			setTimeout(myFunction, 1000);
+		}
+        tiempo--
+	}
+
+
+</script>
+</body>
+</html>

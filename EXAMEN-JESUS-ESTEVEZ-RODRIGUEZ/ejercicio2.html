@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ejercicio 2 </title>
+</head>
+<body>
+
+
+<img src="foto1.jpg" height="300px" width="300px">
+<img src="foto2.jpg" height="300px" width="300px">
+<img src="foto3.jpg" height="300px" width="300px">
+
+
+<p id="ejercicio3"></p>
+<p id="reloj"></p>
+
+<script>
+	var num = 3;
+
+	function Ejercicio3(title=undefined) {
+		//apartado A
+		if (title) {
+			document.title = title;
+		}
+
+
+		//apartado B
+		var imgs = document.getElementsByTagName("img");
+		document.getElementById("ejercicio3").innerHTML = `Hay ${imgs.length} fotos en la página <br/>`;
+
+
+        var nomFich;
+		for (var t = 0; t < imgs.length; t++){
+			var pos = imgs[t].src.lastIndexOf("/");
+			if (pos > 0) nomFich = imgs[t].src.substr( pos + 1 ) ;
+			document.getElementById("ejercicio3").innerHTML += nomFich + "<br/>" ;
+		}
+
+		//apartado C
+
+
+		if (num == 0) {
+			document.getElementById("reloj").innerHTML = `00:00`;
+			window.clearTimeout(0);
+			location.assign(prompt("dime una URL válida (por ejemplo:   https://www.google.es )" ));
+		} else {
+			setTimeout(Ejercicio3, 1000);
+		}
+		document.getElementById("reloj").innerHTML = `00:0${num}`;
+		num--;
+	}
+
+	Ejercicio3();
+</script>
+</body>
+</html>

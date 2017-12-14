@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ejercicio 3</title>
+</head>
+<body>
+<script>
+    class Gato {
+    	constructor(nombre, edad, tamaño,raza) {
+    		this.nombre = nombre;
+    		this.edad = edad;
+    		this.tamaño = tamaño;
+    		this.raza = raza;
+        }
+        caracteristicas(){
+    		return `Me llamo ${this.nombre} , tengo ${this.edad} años, mido ${this.tamaño} cm y soy un ${this.raza}`;
+        }
+    }
+
+    var gato1 = new Gato("jesus", 22, 180, "pastor alemán gatuno");
+    var gato2 = new Gato("pacopepe", 22, 180, "pastor alemán gatuno");
+    document.write(gato1.caracteristicas());
+
+    class JaulaGatitos{
+    	constructor(){
+    		this.jaula = new Array();
+        }
+
+    	añadirGato(gato) {
+    		this.jaula.push(gato);
+        }
+        buscarGato(nombre){
+    		for (var i = 0; i < this.jaula.length; i++){
+    			if (this.jaula[i].nombre == nombre) {
+    				return this.jaula[i];
+                } else {return "no la encuentro"}
+            }
+        }
+    }
+
+    var jaula = new JaulaGatitos();
+    jaula.añadirGato(gato1);
+    jaula.añadirGato(gato2);
+    jaula.buscarGato("jesus");
+
+</script>
+</body>
+</html>

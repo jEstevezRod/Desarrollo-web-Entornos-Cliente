@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ejercicio4</title>
+</head>
+<body>
+<script>
+	function dibujaTabla(id=undefined) {
+		document.write("<table id=" + id + " >");
+		for (k = 1; k < (10); k++) {
+				document.write("<tr height='50'>");
+			for (ñ = 1; ñ < (9); ñ++) {
+				if ( k == 1) {
+					document.write("<td id='titulo" + ñ +"'  width='100'>titulo</td>")
+				} else {
+					document.write("<td width='100'>fila</td>")
+				}
+            }
+        }
+    }
+		document.write("</tr>");
+		document.write("</table>");
+
+        function aplicaEstilos(id=undefined) {
+            for (var r = 1; r < 10; r++) {
+            	document.getElementById("titulo" + r).style.color = "red";
+            }
+
+        }
+
+        dibujaTabla()
+        aplicaEstilos()
+</script>
+</body>
+</html>
