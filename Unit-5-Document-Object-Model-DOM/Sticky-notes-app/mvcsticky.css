@@ -1,0 +1,103 @@
+.notaza {
+    background-color: #faff5f;
+    width: 250px;
+    height: 350px;
+    border: 2px solid #4b5f60;
+    margin: 10px;
+    position: absolute;
+    box-shadow: 9px 8px 10px #1f2505;
+}
+
+.notaza:hover {
+    animation: AnimacionCentral;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes AnimacionCentral {
+    from {
+        transform: scale(1.05, 1.05);
+        background-color: #faff5f;
+    }
+    50% {
+        transform: scale(0.9, 0.9);
+        background-color: #DAA520;
+    }
+    to {
+        transform: scale(1.05, 1.05);
+        background-color: #faff5f;
+    }
+}
+
+h2 {
+    background-color: #DAA520;
+    height: 9%;
+}
+#texto{
+    background-color: #faff5f;
+    height: 86%;
+    width: 99%;
+    border: none;
+    resize: none;
+    font-family: "Comic Sans MS", serif;
+}
+#titulo {
+    margin: 0;
+    text-align: center;
+    width: 89%;
+    height: 25px;
+    background-color: #DAA520;
+    resize: none;
+    font-family: "Comic Sans MS", serif;
+    font-size: 125%;
+    border: none;
+    text-transform: uppercase;
+
+
+}
+
+#new {
+    width: 150px ;
+    height:30px;
+}
+
+#close {
+    color: white;
+    background-color: #ff3f29;
+    text-align: center;
+    width: 10% ;
+    height:25px;
+    float: left;
+    border: none;
+}
+
+.tablero {
+    position: relative;
+}
+body {
+    background-image: url("fondo2.jpg");
+}
+
+#reloj {
+    width: 99%;
+    height: 15px;
+    text-align: right;
+    display: inline-block;
+}
+
+#new {
+    margin-left: 46%;
+    background-color: #f44336; /* Red */
+    /* background-color: #e7e7e7; Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    height: 50px;
+}
+
