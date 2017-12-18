@@ -4,89 +4,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>index</title>
     <style>
         body {
-            background-image: url("img/foto3.jpg");
+            background-image: url("img/fondo1.gif");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            padding-top: 35px;
-            padding-left: 250px;
-            font-family: Calibri;
-            font-size: 140%;
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 27px;
             color: rgb(175, 175, 175);
         }
         
-        h3,
-        h1 {
-            font-family: Calibri Light;
-        }
-        
-        h3::first-letter {
-            text-transform: uppercase;
-            font-size: 130%;
-        }
-        
-        li::first-letter {
-            text-transform: uppercase;
-            font-size: 130%;
-        }
-        
         a {
-            color: rgb(221, 250, 152);
+            color: #03C03C;
         }
         
         a:hover {
             color: rgb(230, 230, 230);
-            background-color: rgb(250, 64, 64);
-        }
-        
-        h1 {
-            color: rgb(0, 101, 160);
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            text-align: center;
-            padding-right: 250px;
-            padding-bottom: 50px;
+            background-color: #FF6347;
         }
         
         h3 {
             color: lightblue;
         }
-        
-        #autor {
-            text-align: right;
-            color: rgb(90, 167, 28);
-            font-family: ‘Lucida Console’, Monaco, monospace;
+
+        .tema {
+            width: 80%;
+            background-color: #656565;
+            opacity: 0.8;
+            margin: 50px;
+            padding: 50px;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+            border-radius: 60px;
+            color: #292929;
         }
+       .tema h1 {
+            flex:1 100%;
+            text-align: center;
+            font-size: 200%;
+            color: #FF6347;
+        }
+
+        .tema .datostema {
+            flex:2 100%;
+        }
+
+        .worksheet {
+            padding: 20px;
+            margin: 20px;
+            opacity: 1;
+            background-color: #d3d3d3;
+            color: #656565;
+            border-radius: 10px; 
+            transition: all .2s ease-in-out;
+        }
+
+        .worksheet:hover {
+            transform: scale(1.2);
+        }
+
+        .ejercicios ul li {
+            margin-left: -35px;
+        }
+        .worksheet h2 {
+            text-align: center;
+            color: #FF6347;
+        }
+        .ejercicios {
+            /*flex:1;*/
+            text-align: center;
+        }
+
+        .ejercicios ul{
+            list-style: none;
+        }
+
+        .ejercicios a {
+            text-decoration: none;
+        }
+
+        #titulo {
+            animation-name: movimientotitulo;
+            animation-duration: 5s;
+            animation-iteration-count: 5;
+            animation-timing-function: ease-in-out;
+
+        }
+
+        @keyframes movimientotitulo {
+            0% {
+                transform: translateX(100px);
+            }
+            50%{
+                transform: translateX(900px);
+            }
+            100%{
+                transform: translateX(100px);
+            }
+        }
+
+        #des {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            color: #292929;
+
+        }
+
     </style>
 </head>
 
 <body>
 
-    <h1>Desarrollo Web en Entorno Cliente</h1>
-    <ol>
-        <li>
-            <h3>Unit 1. Introduction to web programming</h3>
-            <ul>
-                <li>Worksheet 1: <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 1">Todos los ejercicios</a></li>
-                <li>Worksheet 2: <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 2">Todos los ejercicios</a></li>
-                <li>Worksheet 3: <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 3">Todos los ejercicios</a></li>
-                <li>Worksheet 4: <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 4/Ejercicio 1">Ejercicio 1</a> ,
-                    <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 4/spread operator exercise 2 A.html">Ejercicio 2</a> ,
-                    <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 4/spread operator exercise 2 B.html">Ejercicio 2 b</a>,
-                    <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 4/spread operator exercise 3.html">Ejercicio 3</a>,
-                    <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 4/spread operator exercise 4.html">Ejercicio 4</a>,
-                    <a href="https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 4/spread operator exercise 5.html">Ejercicio 5</a>
-                </li>
-                <li>Worksheet 5:
-                    <div id="u1w5"></div>
-                </li>
+    <h1 id="titulo">Desarrollo Web en Entorno Cliente</h1>
+    <div id="des"><img src="img/arr.png" height="170px" width="170px"><h2> - Página en construción</h2></div>
 
+    <section class="tema">
+        <h1>Unit 1 - Introduction to web programming</h1>
+        <section class="datostema">
+            <ol>
+                <li>Features of web browsers.</li>
+                <li>Web Programming languages and technologies on client-side: HTML, CSS, JavaScript, Applets, AJAX, FLASH</li>
+                <li>Introduction to JavaScript
+                    <ul>
+                        <li>Integration with HTML code</li>
+                        <li>Features of JavaScript</li>
+                        <li>Language sintax: variables, types, operators, conditional statements and loops.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section class="worksheet">
+            <h2>WORKSHEET 1</h2>
+                <section class="ejercicios">
+                    <ul>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-1.html">Todos los ejercicios</a></li>
+                    </ul>
+                </section>
+        </section>
+        <section class="worksheet">
+            <h2>WORKSHEET 2</h2>
+                <section class="ejercicios">
+                    <ul>
+                       <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-2.html">Todos los ejercicios</a></li>
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 3</h2>
+                <section class="ejercicios">
+                    <ul>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-3.html">Todos los ejercicios</a></li>
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 4</h2>
+                <section class="ejercicios">
+                    <ul>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/Ejercicio-1.html">Ejercicio 1</a></li>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/spread-operator-exercise-2-A.html">Ejercicio 2-A</a></li>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/spread-operator-exercise-2-A.html">Ejercicio 2-B</a></li>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/spread-operator-exercise-3.html">Ejercicio 3</a></li>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/spread-operator-exercise-4.html.html">Ejercicio 4</a></li>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/spread-operator-exercise-5.html">Ejercicio 5</a></li>
+                        <li><a href="https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-4/spread-operator-exercise-6.html">Ejercicio 6</a></l1i>
+                    </ul>
+                </section>
+        </section>
+        <section class="worksheet">
+            <h2>WORKSHEET 5</h2>
+                <section class="ejercicios">
+                    <ul id="u1w5"></ul>
+                </section>
+        </section>
+    </section>
+    <section class="tema">
+        <h1>Unit 2 - JavaScript built-in objects</h1>
+        <section class="datostema">
+            <ul>
+                <li>JavaScript native objects: Date, Math, Number, String</li>
+                <li>Browser Objects: Navigator, Screen, Window, Document, History, Location</li>
+                <li>iFrames</li>
             </ul>
-        </li>
-        <li>
+        </section>
+         <section class="worksheet">
+            <h2>WORKSHEET 1</h2>
+                <section class="ejercicios">
+                    <ul id="u2w1">
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 2</h2>
+                <section class="ejercicios">
+                    <ul id="u2w2">
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 3</h2>
+                <section class="ejercicios">
+                    <ul id="u2w3">
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 4</h2>
+                <section class="ejercicios">
+                    <ul id="u2w4">
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 6</h2>
+                <section class="ejercicios">
+                    <ul id="u2w1">
+                        <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-6/Ejercicio-1.html'> Ejercicio 2 </a><li>
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 7</h2>
+                <section class="ejercicios">
+                    <ul id="u2w7">
+                    </ul>
+                </section>
+        </section>
+                <section class="worksheet">
+            <h2>WORKSHEET 8</h2>
+                <section class="ejercicios">
+                    <ul id="u2w8">
+                    </ul>
+                </section>
+        </section>
+    </section>
+
             <h3>Unit 2. JavaScript built-in objects</h3>
             <ul>
                 <li>Worksheet 1:
@@ -102,7 +260,7 @@
                     <div id="u2w4"></div>
                 </li>
                 <li> Workshet 6:
-                    <div> <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 4/Ejercicio1.html'> Ejercicio 1 </a></div>
+                    <div> <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-6/Ejercicio-1.html'> Ejercicio 1 </a><li></div>
                 </li>
                 <li> Workshet 7:
                     <div id="u2w7"></div>
@@ -178,41 +336,41 @@
         //unidad 1 ws 5
         var u1w5 = document.getElementById("u1w5");
         for (var index = 0; index < 10; index++) {
-            u1w5.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 1. Introduction to web programming/Worksheet 5/Ejercicio 4.1" + index + ".html'>Ejercicio 4.1" + index + "</a>,";
+            u1w5.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-1-Introduction-to-web-programming/Worksheet-5/Ejercicio-4.1" + index + ".html'>Ejercicio 4.1" + index + "</a></li>";
         }
         //unidad 2 ws 1
         var u2w1 = document.getElementById("u2w1");
         var a = [1, 2, 3, 5];
         a.forEach(function(element) {
-            u2w1.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 1/Ejercicio " + element + ".html'> Ejercicio " + element + " </a>,";
+            u2w1.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-1/Ejercicio-" + element + ".html'> Ejercicio " + element + " </a></li>";
         }, this);
         //unidad 2 ws2
         var u2w2 = document.getElementById("u2w2");
         var b = [1, 5, 7, 8];
         b.forEach(function(element) {
-            u2w2.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 2/Ejercicio " + element + ".html'> Ejercicio " + element + " </a>,";
+            u2w2.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-2/Ejercicio-" + element + ".html'> Ejercicio " + element + " </a></li>";
         }, this);
         //unidad 2 ws3
         var u2w3 = document.getElementById("u2w3");
         var c = [1, 2, 7, 9];
         c.forEach(function(element) {
-            u2w3.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 3/Ejercicio " + element + ".html'> Ejercicio " + element + " </a>,";
+            u2w3.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-3/Ejercicio-" + element + ".html'> Ejercicio " + element + " </a></li>";
         }, this);
         //unidad 2 ws4
         var u2w4 = document.getElementById("u2w4");
         for (var index = 1; index < 3; index++) {
-            u2w4.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 4/Ejercicio " + index + ".html'> Ejercicio " + index + " </a>,";
+            u2w4.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-4/Ejercicio-" + index + ".html'> Ejercicio " + index + " </a></li>";
         }
         //unidad 2 ws7
         var u2w7 = document.getElementById("u2w7");
         var d = [1, "1b", "1c", "1d", "1e", 2, "2b", "2c"]
         d.forEach(function(element) {
-            u2w7.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 7/Ejercicio " + element + ".html'> Ejercicio " + element + " </a>,";
+            u2w7.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-7/Ejercicio-" + element + ".html'> Ejercicio " + element + " </a></li>";
         }, this);
         //unidad 2 ws8
         var u2w8 = document.getElementById("u2w8");
         for (var index = 1; index < 3; index++) {
-            u2w8.innerHTML += " <a href='https://jestevezrod.github.io/Desarrollo-Web-en-Entornos-Cliente/Unit 2. JavaScript built-in objects/Worksheet 8/Ejercicio " + index + ".html'> Ejercicio " + index + " </a>,";
+            u2w8.innerHTML += " <li><a href='https://jEstevezRod.github.io/Desarrollo-web-Entornos-Cliente/Unit-2-JavaScript-built-in-objects/Worksheet-1/Ejercicio-" + index + ".html'> Ejercicio " + index + " </a></li>";
         }
         //unidad 3 ws1
         var u3w1 = document.getElementById("u3w1");
@@ -265,4 +423,4 @@
 
 </body>
 
-</html>s
+</html>
