@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Movie search</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+         #movie {
+        margin-top: 5%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:flex-start;
+        height: 350px;
+        width: 100%;
+        padding: 15px;
+        overflow-x: scroll;
+        box-sizing: border-box;
+        background-color: #656565;
+    }
+        #series {
+            margin-top: 5%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:flex-start;
+            height: 350px;
+            width: 100%;
+            padding: 15px;
+            overflow-x: scroll;
+            box-sizing: border-box;
+            background-color: #656565;
+            }
+
+        #game {
+            margin-top: 5%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:flex-start;
+            height: 350px;
+            width: 100%;
+            padding: 15px;
+            overflow-x: scroll;
+            box-sizing: border-box;
+            background-color: #656565;
+        }
+    .box {
+        box-sizing: border-box;
+        margin: 0px 40px;
+        width: 220px;
+        height: 300px;
+        padding: 10px;
+        background-color: #d3d3d3;
+    }
+
+    .box img {
+        width: 150px;
+        height: 200px;
+    }
+    </style>
+</head>
+<body >
+    <input type="text" id="busqueda" onchange="controlador.cargaAll()" autofocus>
+    <section id="movie"></section>
+    <section id="series"></section>
+    <section id="game"></section>
+
+    <script type="text/javascript">
+
+    // modelo
+
+    class Movie {
+        constructor(title, year,imdbid,type, poster){
+            this.title = title;
+            this.year = year;
+            this.imdbid = imdbid;
+            this.type = type;
+            this.img = poster;
+        }
+
+        get Informacion(){
+            return "Titulo: " + this.title + "<br/> Año: " + this.year + "<br/> ID: " + this.imdbid + "<br/> Género: " + this.type;
+        }
+    }
+
+    class movieCollection {
+        constructor(){
+            this.collection = [];
+        }
+
+        addToCollection(movie){
+            this.collection.push(movie)
+        }
+
+        emptyCollection(){
+            this.collection = []
+        }
+
+    }
+
+    //vista
+
+    class viewMovie{
+
+        addmovie(peli){
+            this.view = $('#movie').append('<section class="box"><img src="'+ peli.img +'" ><p>'+peli.title+' ( '+ peli.year +' ) '+'<br/> '+peli.type+'</p></section>');
+        }
+
+        addseries(peli){
+            this.view2 = $('#series').append('<section class="box"><img src="'+ peli.img +'" ><p>'+peli.title+' ( '+ peli.year +' ) '+'<br/> '+peli.type+'</p></section>');
+        }
+        addgame(peli){
+            this.view = $('#game').append('<section class="box"><img src="'+ peli.img +'" ><p>'+peli.title+' ( '+ peli.year +' ) '+'<br/> '+peli.type+'</p></section>');
+        }
+    }
+
+    // controlador
+
+    class Controlador{
+        constructor(){
+            this.newview = new viewMovie();
+            this.objCollection = new movieCollection();
+            this.page = 1;
+            this.cargando = false;
+            }
+
+        ajaxPetitionAll(tipo=""){
+            let busqueda = $('#busqueda').val();
+            let self = this;
+                $.ajax({
+                    url : 'http://www.omdbapi.com/?apikey=e06027ef&s='+ busqueda+'&page='+ this.page +'&type='+tipo +'',
+                    success : function(json) {
+                        for (let num = 0; num < json['Search'].length; num++){
+                            this.newmovie = new Movie(json['Search'][num].Title,json['Search'][num].Year,json['Search'][num].imnbdID,
+                            json['Search'][num].Type,json['Search'][num].Poster == "N/A" ? "foto1.png" : json['Search'][num].Poster  );
+                            if (json['Search'][num].Type == "movie"){ controlador.newview.addmovie(this.newmovie);}
+                            else if (json['Search'][num].Type == "series"){ controlador.newview.addseries(this.newmovie);}
+                            else if (json['Search'][num].Type == "game"){ controlador.newview.addgame(this.newmovie);}
+                            }
+                            self.objCollection.addToCollection(this.newmovie);
+                            controlador.cargando = false;
+                        
+                     }
+                });
+            
+            }
+        
+        cargaAll(){
+            this.alltypes = ['movie','series', 'game'];
+            this.alltypes.forEach(function(elem){
+                controlador.ajaxPetitionAll(elem)
+            })
+        }
+
+
+        HorizontalScroll(){
+            $("section").bind("mousewheel DOMMouseScroll",function (e) {
+                var scrollTo = 0;
+                if (e.type == 'mousewheel') {
+                    scrollTo = (e.originalEvent.wheelDelta * -1);
+                }
+                else if (e.type == 'DOMMouseScroll') {
+                    scrollTo = 30 * e.originalEvent.detail; //sensibilidad del scroll
+                }
+                $(this).scrollLeft(scrollTo + $(this).scrollLeft());
+                e.preventDefault();
+            })
+            }
+        loadNewPage(){
+            $("section").on("scroll", function (e) {
+                let sectionIN = $(this).attr('id');
+                if (controlador.check($(this).attr('id'))) {
+                    if (!controlador.cargando){
+                        $(this).ready(function(){
+                            ++controlador.page;
+                            controlador.ajaxPetitionAll(sectionIN);
+                            controlador.cargando = true;
+                        }
+                        )}
+                }      
+            })
+        }
+
+        check(where){  
+            var docViweLeft = $(window).scrollLeft();
+            var docViewBottom = docViweLeft + $(window).width();
+            var elemLeft = $('#'+where+' .box:last').offset().left;
+            var elemBottom = elemLeft +  $('#'+where+'.box:last').width();
+            return ((elemBottom <= docViewBottom) && (elemLeft >= docViweLeft));
+
+        }
+    }
+                
+let controlador = new Controlador();
+controlador.HorizontalScroll();
+controlador.loadNewPage();
+
+
+    </script>
+    
+</body>
+</html>
