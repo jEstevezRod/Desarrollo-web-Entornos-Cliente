@@ -5,98 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <title>Movie search</title>
-    <style>
-    body {
-        margin: 0;
-        padding: 0;
-    }
-         #movie {
-        margin-top: 5%;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content:flex-start;
-        height: 350px;
-        width: 100%;
-        padding: 15px;
-        overflow-x: scroll;
-        box-sizing: border-box;
-        background-color: #656565;
-    }
-        #series {
-            margin-top: 5%;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content:flex-start;
-            height: 350px;
-            width: 100%;
-            padding: 15px;
-            overflow-x: scroll;
-            box-sizing: border-box;
-            background-color: #656565;
-            }
-
-        #game {
-            margin-top: 5%;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content:flex-start;
-            height: 350px;
-            width: 100%;
-            padding: 15px;
-            overflow-x: scroll;
-            box-sizing: border-box;
-            background-color: #656565;
-        }
-    .box {
-        box-sizing: border-box;
-        margin: 0px 40px;
-        width: 220px;
-        height: 300px;
-        padding: 10px;
-        background-color: #d3d3d3;
-    }
-
-    .box img {
-        width: 150px;
-        height: 200px;
-    }
-    </style>
+    <link rel="stylesheet" href="css.css" type="text/css">
 </head>
-<body >
-    <input type="text" id="busqueda" onchange="controlador.cargaAll()" autofocus>
-    <section id="movie"></section>
-    <section id="series"></section>
-    <section id="game"></section>
+<body>
+<div class="netflix">NETFLIX</div>
+<div class="search-form">
+    <form>
+        <input type="text" id="busqueda" onchange="controlador.cargaAll()" autofocus>
+        <button></button>
+    </form>
+    <img id="flechita" src="cursor.png" alt="clickar para buscar" width="80" height="80" style="margin-left: 70px;">
+</div>
+<div class="informacionmovie"></div>
+<h1 id="peliculastitulo" class="netflix peque"></h1>
+<section id="movie"></section>
+<div class="informacionseries"></div>
+<h1 id="seriestitulo" class="netflix peque"></h1>
+<section id="series"></section>
+<div class="informaciongame"></div>
+<h1 id="juegostitulo" class="netflix peque"></h1>
+<section id="game"></section>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
     // modelo
 
     class Movie {
-        constructor(title, year,imdbid,type, poster){
+        constructor(title, year, imdbid, type, poster) {
             this.title = title;
             this.year = year;
-            this.imdbid = imdbid;
+            this.imdbID = imdbid;
             this.type = type;
             this.img = poster;
         }
 
-        get Informacion(){
+        get Informacion() {
             return "Titulo: " + this.title + "<br/> Año: " + this.year + "<br/> ID: " + this.imdbid + "<br/> Género: " + this.type;
         }
     }
 
     class movieCollection {
-        constructor(){
+        constructor() {
             this.collection = [];
         }
 
-        addToCollection(movie){
+        addToCollection(movie) {
             this.collection.push(movie)
         }
 
-        emptyCollection(){
+        emptyCollection() {
             this.collection = []
         }
 
@@ -104,61 +63,101 @@
 
     //vista
 
-    class viewMovie{
+    class viewMovie {
 
-        addmovie(peli){
-            this.view = $('#movie').append('<section class="box"><img src="'+ peli.img +'" ><p>'+peli.title+' ( '+ peli.year +' ) '+'<br/> '+peli.type+'</p></section>');
+        addmovie(peli) {
+            this.view = $('#movie').append('<section class="box" id="' + peli.imdbid + '"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
         }
 
-        addseries(peli){
-            this.view2 = $('#series').append('<section class="box"><img src="'+ peli.img +'" ><p>'+peli.title+' ( '+ peli.year +' ) '+'<br/> '+peli.type+'</p></section>');
+        addseries(peli) {
+            this.view2 = $('#series').append('<section  id="' + peli.imdbID + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
         }
-        addgame(peli){
-            this.view = $('#game').append('<section class="box"><img src="'+ peli.img +'" ><p>'+peli.title+' ( '+ peli.year +' ) '+'<br/> '+peli.type+'</p></section>');
+
+        addgame(peli) {
+            this.view = $('#game').append('<section  id="' + peli.imdbid + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
         }
     }
 
     // controlador
 
-    class Controlador{
-        constructor(){
+    class Controlador {
+        constructor() {
             this.newview = new viewMovie();
             this.objCollection = new movieCollection();
-            this.page = 1;
+            this.pagemovie = 0;
+            this.pageseries = 0;
+            this.pagegames = 0;
             this.cargando = false;
-            }
+            this.page;
+        }
 
-        ajaxPetitionAll(tipo=""){
-            let busqueda = $('#busqueda').val();
-            let self = this;
-                $.ajax({
-                    url : 'http://www.omdbapi.com/?apikey=e06027ef&s='+ busqueda+'&page='+ this.page +'&type='+tipo +'',
-                    success : function(json) {
-                        for (let num = 0; num < json['Search'].length; num++){
-                            this.newmovie = new Movie(json['Search'][num].Title,json['Search'][num].Year,json['Search'][num].imnbdID,
-                            json['Search'][num].Type,json['Search'][num].Poster == "N/A" ? "foto1.png" : json['Search'][num].Poster  );
-                            if (json['Search'][num].Type == "movie"){ controlador.newview.addmovie(this.newmovie);}
-                            else if (json['Search'][num].Type == "series"){ controlador.newview.addseries(this.newmovie);}
-                            else if (json['Search'][num].Type == "game"){ controlador.newview.addgame(this.newmovie);}
-                            }
-                            self.objCollection.addToCollection(this.newmovie);
-                            controlador.cargando = false;
-                        
-                     }
-                });
-            
-            }
-        
-        cargaAll(){
-            this.alltypes = ['movie','series', 'game'];
-            this.alltypes.forEach(function(elem){
+        cargaAll() {
+            $('#peliculastitulo').text("PELICULAS");
+            $('#seriestitulo').text("SERIES");
+            $('#juegostitulo').text("JUEGOS");
+            this.busqueda = $('#busqueda').val();
+            $('#movie').empty();
+            $('#series').empty();
+            $('#game').empty();
+            $('#busqueda').val("");
+            this.pagemovie = 0;
+            this.pageseries = 0;
+            this.pagegames = 0;
+            this.alltypes = ['movie', 'series', 'game'];
+            this.alltypes.forEach(function (elem) {
                 controlador.ajaxPetitionAll(elem)
             })
         }
 
+        ajaxPetitionAll(tipo = "") {
+            let self = this;
+            if (tipo == 'movie') {
+                controlador.pagemovie++;
+                controlador.page = controlador.pagemovie;
+            }
+            else if (tipo == 'series') {
+                controlador.pageseries++;
+                controlador.page = controlador.pageseries;
+            }
+            else if (tipo == 'game') {
+                controlador.pagegames++;
+                controlador.page = controlador.pagegames;
+            }
+            $.ajax({
+                url: 'http://www.omdbapi.com/?apikey=e06027ef&s=' + this.busqueda + '&page=' + controlador.page + '&type=' + tipo + '',
+                success: function (json) {
+                    console.log("paginas de peliculas cargadas : " + controlador.pagemovie);
+                    console.log("paginas de series cargadas: " + controlador.pageseries);
+                    console.log("paginas de juegos cargadas: " + controlador.pagegames);
+                    for (let num = 0; num < json['Search'].length; num++) {
+                        this.newmovie = new Movie(json['Search'][num].Title, json['Search'][num].Year, json['Search'][num].imdbID,
+                            json['Search'][num].Type, json['Search'][num].Poster == "N/A" ? "foto1.png" : json['Search'][num].Poster);
+                        if (json['Search'][num].Type == "movie") {
+                            controlador.newview.addmovie(this.newmovie);
+                            console.log(this.newmovie)
+                        }
+                        else if (json['Search'][num].Type == "series") {
+                            controlador.newview.addseries(this.newmovie);
+                            console.log(this.newmovie)
+                        }
+                        else if (json['Search'][num].Type == "game") {
+                            controlador.newview.addgame(this.newmovie);
+                            console.log(this.newmovie)
+                        }
+                    }
+                    console.log(this.newmovie);
+                    self.objCollection.addToCollection(this.newmovie);
+                    controlador.cargando = false;
 
-        HorizontalScroll(){
-            $("section").bind("mousewheel DOMMouseScroll",function (e) {
+                }
+            });
+
+        }
+
+
+
+        HorizontalScroll() {
+            $("section").bind("mousewheel DOMMouseScroll", function (e) {
                 var scrollTo = 0;
                 if (e.type == 'mousewheel') {
                     scrollTo = (e.originalEvent.wheelDelta * -1);
@@ -169,38 +168,68 @@
                 $(this).scrollLeft(scrollTo + $(this).scrollLeft());
                 e.preventDefault();
             })
-            }
-        loadNewPage(){
+        }
+
+        loadNewPage() {
             $("section").on("scroll", function (e) {
                 let sectionIN = $(this).attr('id');
                 if (controlador.check($(this).attr('id'))) {
-                    if (!controlador.cargando){
-                        $(this).ready(function(){
-                            ++controlador.page;
-                            controlador.ajaxPetitionAll(sectionIN);
-                            controlador.cargando = true;
-                        }
-                        )}
-                }      
+                    if (!controlador.cargando) {
+                        $(this).ready(function () {
+                                controlador.ajaxPetitionAll(sectionIN);
+                                controlador.cargando = true;
+                            }
+                        )
+                    }
+                }
             })
         }
 
-        check(where){  
+        check(where) {
             var docViweLeft = $(window).scrollLeft();
             var docViewBottom = docViweLeft + $(window).width();
-            var elemLeft = $('#'+where+' .box:last').offset().left;
-            var elemBottom = elemLeft +  $('#'+where+'.box:last').width();
+            var elemLeft = $('#' + where + ' .box:last').offset().left;
+            var elemBottom = elemLeft + $('#' + where + '.box:last').width();
             return ((elemBottom <= docViewBottom) && (elemLeft >= docViweLeft));
 
         }
-    }
-                
-let controlador = new Controlador();
-controlador.HorizontalScroll();
-controlador.loadNewPage();
-console.log("Esto funciona");
 
-    </script>
-    
+        getInformation() {
+            $('section .box').click(function () {
+                let id = $(this).attr('id');
+                console.log(id)
+            });
+        }
+
+        Searcher(){
+            var input = document.querySelector('.search-form');
+            var search = document.querySelector('input');
+            var button = document.querySelector('button');
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                input.classList.toggle('active');
+                $('#flechita').remove();
+            });
+            search.addEventListener('focus', function () {
+                input.classList.add('focus');
+            })
+
+            search.addEventListener('blur', function () {
+                search.value.length != 0 ? input.classList.add('focus') : input.classList.remove('focus');
+            })
+
+        }
+    }
+
+    let controlador = new Controlador();
+    controlador.HorizontalScroll();
+    controlador.getInformation();
+    controlador.loadNewPage();
+    controlador.Searcher();
+
+
+
+</script>
+
 </body>
 </html>
