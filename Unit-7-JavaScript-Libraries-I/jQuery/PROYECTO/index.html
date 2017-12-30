@@ -10,24 +10,36 @@
     <link rel="stylesheet" href="css.css" type="text/css">
 </head>
 <body>
-<div class="netflix">NETFLIX</div>
+<div class="netflix"><p id="gran">NETFLIZ
+    <p id="peq">EXISTS? JUST LOOK FOR IT</p></div>
 <div class="search-form">
     <form>
-        <input type="text" id="busqueda" onchange="controlador.cargaAll()" autofocus>
+        <input type="text" id="busqueda" onchange="controlador.cargaAll()" autofocus autocomplete="off">
         <button></button>
     </form>
     <img id="flechita" src="cursor.png" alt="clickar para buscar" width="80" height="80" style="margin-left: 70px;">
 </div>
-<div class="informacionmovie"></div>
 <h1 id="peliculastitulo" class="netflix peque"></h1>
+<div class="informacionmovie"></div>
 <section id="movie"></section>
-<div class="informacionseries"></div>
 <h1 id="seriestitulo" class="netflix peque"></h1>
+<div class="informacionseries"></div>
 <section id="series"></section>
-<div class="informaciongame"></div>
 <h1 id="juegostitulo" class="netflix peque"></h1>
+<div class="informaciongame"></div>
 <section id="game"></section>
-<footer></footer>
+<footer>
+    <div class="footer">
+        <img class="social" src="imgs/instagram.png" alt="">
+        <img class="social" src="imgs/facebook.png" alt="">
+        <img class="social" src="imgs/twitter.png" alt="">
+        <p class="copyright">Copyright @ todos los derechos reservados al ilustre <a
+                href="https://www.linkedin.com/in/jesus-estevez-rodriguez-b57303142/">j. Estevez</a><img
+                style="border:0;width:88px;height:31px;padding-left: 30px;"
+                src="http://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!"/>
+        </p>
+    </div>
+</footer>
 
 <script type="text/javascript">
 
@@ -67,17 +79,18 @@
     class viewMovie {
 
         addmovie(peli) {
-            this.view = $('#movie').append('<section class="box" id="' + peli.imdbID + '"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
+            this.view = $('#movie').append('<section id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
         }
 
         addseries(peli) {
-            this.view = $('#series').append('<section  id="' + peli.imdbID + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
+            this.view = $('#series').append('<section  id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
         }
 
         addgame(peli) {
-            this.view = $('#game').append('<section  id="' + peli.imdbID + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
+            this.view = $('#game').append('<section  id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
         }
-        defaultValues(){
+
+        defaultValues() {
             $('#movie').empty();
             $('#series').empty();
             $('#game').empty();
@@ -86,10 +99,39 @@
             controlador.pageseries = 0;
             controlador.pagegames = 0;
         }
-        loadStructure(){
+
+        loadStructure() {
             $('#peliculastitulo').text("PELICULAS");
             $('#seriestitulo').text("SERIES");
             $('#juegostitulo').text("JUEGOS");
+        }
+
+        loadInformation(dis, img, title, year, runtime, sinopsis, actores, premios) {
+            $('.informacion' + dis + '').append('<div class="monoinfor">' +
+                '<img class="monofoto" src="' + img + '"></div>' +
+                '<table class="monotext">' +
+                '<tr>' +
+                '   <td><h3>Título: </h3></td>' +
+                '   <td><h4> ' + title + '</h4></td>' +
+                '</tr><tr>' +
+                '   <td><h3>Año de salida: </h3></td>' +
+                '   <td><h4> ' + year + '</h4></td>' +
+                '</tr><tr>' +
+                '   <td><h3>Duración: </h3></td>' +
+                '   <td><h4> ' + runtime + '</h4></td>' +
+                '</tr><tr>' +
+                '   <td><h3>Sinopsis: </h3></td>' +
+                '   <td><h4> ' + sinopsis + '</h4></td>' +
+                '</tr><tr>' +
+                '   <td><h3>Actores: </h3></td>' +
+                '   <td><h4> ' + actores + '</h4></td>' +
+                '</tr><tr>' +
+                '   <td><h3>Premios: </h3></td>' +
+                '   <td><h4> ' + premios + '</h4></td>' +
+                '</tr><tr>' +
+                '</table>' +
+                '<img class="minimizar" src="mini.png"/>');
+            $('.informacion' + dis + '').css({'margin-top': '100px'});
         }
     }
 
@@ -97,6 +139,7 @@
 
     class Controlador {
         constructor() {
+            let self = this;
             this.newview = new viewMovie();
             this.objCollection = new movieCollection();
             this.pagemovie = 0;
@@ -104,6 +147,15 @@
             this.pagegames = 0;
             this.cargando = false;
             this.page;
+            $('.netflix').click(() => {
+                self.newview.defaultValues();
+                $('#peliculastitulo').text("");
+                $('#seriestitulo').text("");
+                $('#juegostitulo').text("");
+                $('.informacionmovie').empty();
+                $('.informacionseries').empty();
+                $('.informaciongame').empty();
+            })
         }
 
         cargaAll() {
@@ -117,6 +169,9 @@
         }
 
         ajaxPetitionAll(tipo = "") {
+            $('.informacionmovie').empty();
+            $('.informacionseries').empty();
+            $('.informaciongame').empty();
             let self = this;
             if (tipo == 'movie') {
                 controlador.pagemovie++;
@@ -147,7 +202,6 @@
                         }
                     }
                     self.objCollection.addToCollection(this.newmovie);
-                    controlador.getInformation();
                     controlador.cargando = false;
 
                 }
@@ -155,10 +209,23 @@
 
         }
 
-        ajaxPetitionMovie(){
+        ajaxPetitionMovie(imdbid) {
+            let self = this;
+            $('.informacionmovie').empty();
+            $('.informacionseries').empty();
+            $('.informaciongame').empty();
+            $.ajax({
+                url: 'http://www.omdbapi.com/?apikey=e06027ef&i=' + imdbid + '',
+                success: function (json) {
+                    self.newview.loadInformation(json.Type, json.Poster, json.Title, json.Year, json.Runtime, json.Plot, json.Actors, json.Awards);
+                    $('.minimizar').click(function () {
+                        $('.informacion' + json.Type + '').empty();
+                    })
+
+                }
+            })
 
         }
-
 
         HorizontalScroll() {
             $("section").bind("mousewheel DOMMouseScroll", function (e) {
@@ -199,14 +266,7 @@
 
         }
 
-        getInformation() {
-            $('.box').click(function () {
-                let id = $(this)[0].id;
-                console.log(id)
-            });
-        }
-
-        Searcher(){
+        Searcher() {
             var input = document.querySelector('.search-form');
             var search = document.querySelector('input');
             var button = document.querySelector('button');
@@ -228,10 +288,8 @@
 
     let controlador = new Controlador();
     controlador.HorizontalScroll();
-    controlador.getInformation();
     controlador.loadNewPage();
     controlador.Searcher();
-
 
 
 </script>
