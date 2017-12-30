@@ -27,6 +27,7 @@
 <div class="informaciongame"></div>
 <h1 id="juegostitulo" class="netflix peque"></h1>
 <section id="game"></section>
+<footer></footer>
 
 <script type="text/javascript">
 
@@ -66,15 +67,29 @@
     class viewMovie {
 
         addmovie(peli) {
-            this.view = $('#movie').append('<section class="box" id="' + peli.imdbid + '"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
+            this.view = $('#movie').append('<section class="box" id="' + peli.imdbID + '"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
         }
 
         addseries(peli) {
-            this.view2 = $('#series').append('<section  id="' + peli.imdbID + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
+            this.view = $('#series').append('<section  id="' + peli.imdbID + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
         }
 
         addgame(peli) {
-            this.view = $('#game').append('<section  id="' + peli.imdbid + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
+            this.view = $('#game').append('<section  id="' + peli.imdbID + '" class="box"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
+        }
+        defaultValues(){
+            $('#movie').empty();
+            $('#series').empty();
+            $('#game').empty();
+            $('#busqueda').val("");
+            controlador.pagemovie = 0;
+            controlador.pageseries = 0;
+            controlador.pagegames = 0;
+        }
+        loadStructure(){
+            $('#peliculastitulo').text("PELICULAS");
+            $('#seriestitulo').text("SERIES");
+            $('#juegostitulo').text("JUEGOS");
         }
     }
 
@@ -92,17 +107,9 @@
         }
 
         cargaAll() {
-            $('#peliculastitulo').text("PELICULAS");
-            $('#seriestitulo').text("SERIES");
-            $('#juegostitulo').text("JUEGOS");
             this.busqueda = $('#busqueda').val();
-            $('#movie').empty();
-            $('#series').empty();
-            $('#game').empty();
-            $('#busqueda').val("");
-            this.pagemovie = 0;
-            this.pageseries = 0;
-            this.pagegames = 0;
+            this.newview.defaultValues();
+            this.newview.loadStructure();
             this.alltypes = ['movie', 'series', 'game'];
             this.alltypes.forEach(function (elem) {
                 controlador.ajaxPetitionAll(elem)
@@ -126,27 +133,21 @@
             $.ajax({
                 url: 'http://www.omdbapi.com/?apikey=e06027ef&s=' + this.busqueda + '&page=' + controlador.page + '&type=' + tipo + '',
                 success: function (json) {
-                    console.log("paginas de peliculas cargadas : " + controlador.pagemovie);
-                    console.log("paginas de series cargadas: " + controlador.pageseries);
-                    console.log("paginas de juegos cargadas: " + controlador.pagegames);
                     for (let num = 0; num < json['Search'].length; num++) {
                         this.newmovie = new Movie(json['Search'][num].Title, json['Search'][num].Year, json['Search'][num].imdbID,
                             json['Search'][num].Type, json['Search'][num].Poster == "N/A" ? "foto1.png" : json['Search'][num].Poster);
                         if (json['Search'][num].Type == "movie") {
                             controlador.newview.addmovie(this.newmovie);
-                            console.log(this.newmovie)
                         }
                         else if (json['Search'][num].Type == "series") {
                             controlador.newview.addseries(this.newmovie);
-                            console.log(this.newmovie)
                         }
                         else if (json['Search'][num].Type == "game") {
                             controlador.newview.addgame(this.newmovie);
-                            console.log(this.newmovie)
                         }
                     }
-                    console.log(this.newmovie);
                     self.objCollection.addToCollection(this.newmovie);
+                    controlador.getInformation();
                     controlador.cargando = false;
 
                 }
@@ -154,6 +155,9 @@
 
         }
 
+        ajaxPetitionMovie(){
+
+        }
 
 
         HorizontalScroll() {
@@ -185,6 +189,7 @@
             })
         }
 
+
         check(where) {
             var docViweLeft = $(window).scrollLeft();
             var docViewBottom = docViweLeft + $(window).width();
@@ -195,8 +200,8 @@
         }
 
         getInformation() {
-            $('section .box').click(function () {
-                let id = $(this).attr('id');
+            $('.box').click(function () {
+                let id = $(this)[0].id;
                 console.log(id)
             });
         }
