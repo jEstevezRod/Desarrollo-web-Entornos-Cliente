@@ -86,7 +86,7 @@ class viewMovie {
             '   <td><h4> ' + premios + '</h4></td>' +
             '</tr><tr>' +
             '</table>' +
-            '<img class="minimizar" src="mini.png"/>');
+            '<img class="minimizar" src="imgs/mini.png"/>');
         $('.informacion' + dis + '').css({ 'margin-top': '100px' });
     }
 
@@ -163,7 +163,7 @@ class Controlador {
                 else {
                     for (let num = 0; num < json['Search'].length; num++) {
                         this.newmovie = new Movie(json['Search'][num].Title, json['Search'][num].Year, json['Search'][num].imdbID,
-                            json['Search'][num].Type, json['Search'][num].Poster == "N/A" ? "foto1.png" : json['Search'][num].Poster);
+                            json['Search'][num].Type, json['Search'][num].Poster == "N/A" ? "imgs/foto1.png" : json['Search'][num].Poster);
                         if (json['Search'][num].Type == "movie") {
                             controlador.newview.addmovie(this.newmovie);
                         }
@@ -194,7 +194,7 @@ class Controlador {
                 $('.informacionmovie').show("fast");
                 $('.informacionseries').show("fast");
                 $('.informaciongame').show("fast");
-                self.newview.loadInformation(json.Type, json.Poster == "N/A" ? "foto1.png" : json.Poster, json.Title, json.Year, json.Runtime, json.Plot, json.Actors, json.Awards);
+                self.newview.loadInformation(json.Type, json.Poster == "N/A" ? "imgs/foto1.png" : json.Poster, json.Title, json.Year, json.Runtime, json.Plot, json.Actors, json.Awards);
                 $('.minimizar').click(function () {
                     $('.informacion' + json.Type + '').hide(1000);
                     $('.informacion' + json.Type + '').empty();

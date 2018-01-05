@@ -10,13 +10,28 @@
 
 <body>
     <script>
-       var lista1 = [9,8,3];
-       var lista2 = [9,8,3];
-       if (lista1 === lista2) {
-          console.log("iguales");
-       } else {
-          console.log("distintas");
-       }
+var playerScores = [
+{
+    name: "pedro",
+    points : 20
+},
+{
+    name: "susana",
+    points : 25
+},
+{
+    name: "raquel",
+    points : 10
+},
+{
+    name: "alfonso",
+    points : 20
+}
+
+];
+
+var total = playerScores.reduce((acc,cur) => (acc + cur["points"]),0);
+console.log(total);
     </script>
 </body>
 
