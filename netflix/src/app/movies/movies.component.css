@@ -1,0 +1,15 @@
+.box {
+    width: 200px;
+    height : 300px;
+    padding : 15px;
+    background-Color : orange;
+    box-sizing: order-box;
+    margin: 20px;
+}
+
+img {
+    width: 150px;
+    height: 240px;
+    box-sizing: order-box;
+
+}

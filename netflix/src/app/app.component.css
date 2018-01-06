@@ -1,0 +1,15 @@
+section {
+    position: absolute;
+    margin-top: 5%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 70%;
+    margin: 2% 10%;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgb(85, 85, 85);
+    color: white;
+}
+

@@ -1,7 +1,7 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-
+import { Observable } from 'rxjs/Observable';
+import { AppComponent } from './app.component'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -10,12 +10,11 @@ const httpOptions = {
 @Injectable()
 export class GlobalPetitionService {
 
-  @Input() titulo;
 
-  constructor(public http: HttpClient ) {}
+  constructor(public http: HttpClient) { }
 
-  petition(){
+  petition(title, page) {
     return this.http
-    .get('http://www.omdbapi.com/?apikey=e06027ef&s='+ this.titulo )
+      .get('http://www.omdbapi.com/?apikey=e06027ef&s=' + title + '&page=' + page)
   }
 }
