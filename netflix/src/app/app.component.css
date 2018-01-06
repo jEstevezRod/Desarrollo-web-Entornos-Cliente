@@ -3,7 +3,7 @@ section {
     margin-top: 5%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     width: 70%;
     margin: 2% 10%;
     height: auto;

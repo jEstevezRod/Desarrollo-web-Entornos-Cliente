@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Rx';
   selector: 'app-root',
   template: `
   <label for="search">Busqueda: </label>
-    <input id="search" type=text #searcher (change)="buscar($event.target.value)">
+    <input id="search" type=text value="" #searcher (change)="buscar($event.target.value)">
   <section id="canvas" infiniteScroll
   [infiniteScrollDistance]="1"
   [infiniteScrollThrottle]="50"
@@ -21,7 +21,7 @@ export class AppComponent {
 
   @Output() MovieSearch: EventEmitter<any> = new EventEmitter();
 
-  public title;
+  public title = "";
   public movies;
   public page = 1;
   public globalArray=[];
@@ -30,7 +30,7 @@ export class AppComponent {
     this.globalArray = []
     this.page=1;
     this.title = $event;
-    this.ngOnInit();
+    this.Master();
   }
 
   constructor(public _GlobalPetitionService: GlobalPetitionService) {
@@ -38,22 +38,27 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    
+  }
+
+  Master(){
     this._GlobalPetitionService.petition(this.title, this.page).subscribe(
       data => {
         this.movies = data;
         this.movies = Array.of(this.movies);
-        for ( let movi of this.movies[0].Search){
-          this.globalArray.push(movi);
+        for ( let movie of this.movies[0].Search){
+          this.globalArray.push(movie);
         }
       },
-      err => console.error(err),
+      err => console.error("NEEEEEEEEEEEEENG",err),
       () => console.log('done loading movies')
     );
+
   }
 
   nextPage(){
     this.page++;
-    this.ngOnInit();
+    this.Master();
 
   }
 }
