@@ -75,6 +75,12 @@ h4 {
 
 }
 /* **************************************/
+
+* {
+    border: none;
+
+}
+
 .search-form {
     position: relative;
     margin: 50px auto 0;
@@ -121,7 +127,7 @@ button {
     height: 100%;
     border-radius: 50%;
     width: 64px;
-    height: 64px;
+    height: 57px;
     transition: all 0.5s cubic-bezier(.87, -.41, .19, 1.44);
 }
 

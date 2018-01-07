@@ -1,3 +1,4 @@
+
 section {
     position: absolute;
     margin-top: 5%;
@@ -11,5 +12,36 @@ section {
     box-sizing: border-box;
     background-color: rgb(85, 85, 85);
     color: white;
+    font-family: "Tokarev";
+    font-size: 200%;
+}
+
+
+/* ESTILOS DEL BUSCADOR */
+#titulo{
+    font-family: "Tokarev";
+    font-size: 400%;
+    text-shadow: 3px 3px 2px black;
+    color: #666;
+    text-align: center
+}
+#peque {
+    font-size: 70%;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(0, 245, 0);
+}
+.yellow {
+    color: yellow;
+}
+
+@font-face {
+    font-family: Tokarev;
+    src: url(fonts/Tokarev.ttf);
 }
 
