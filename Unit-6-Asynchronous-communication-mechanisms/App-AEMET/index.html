@@ -137,6 +137,7 @@
 		    }
 	    }
 	    xhr.open("GET", "ControladorPHP.php?NAME=" + Name, true);
+	    xhr.withCredentials = true;
 	    xhr.send();
     }
 
@@ -155,6 +156,7 @@
 		    }
 	    }
         xhr.open("GET", 'ControladorPHP.php?AEMET=' + usaresta, true);
+	xhr.withCredentials = true;
         xhr.send();
     }
 
