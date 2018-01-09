@@ -7,6 +7,6 @@
 https://jestevezrod.github.io/Desarrollo-web-Entornos-Cliente/
 
 
-# Proyecto de buscador de pelicas :
+# Proyecto de buscador de peliculas :
 
 <a href="https://jestevezrod.github.io/Desarrollo-web-Entornos-Cliente/Unit-7-JavaScript-Libraries-I/jQuery/PROYECTO/index.html">Netflix v2</a>
