@@ -7,6 +7,8 @@ body {
 h3 {
     font-size: 150%;
     color: #696969;
+    font-family: "BLKCHCRY";
+
 }
 
 h4 {
@@ -210,6 +212,10 @@ button:before {
     src: url(fonts/forgottenfuturistbd.otf);
 }
 
+@font-face {
+    font-family: "BLKCHCRY";
+    src: url(fonts/BLKCHCRY.ttf);
+}
 .netflix {
     padding: 0px;
     margin: 0px;
