@@ -1,47 +1,62 @@
 
 section {
-    position: absolute;
-    margin-top: 5%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    width: 70%;
-    margin: 2% 10%;
-    height: auto;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: rgb(85, 85, 85);
-    color: white;
-    font-family: "Tokarev";
-    font-size: 200%;
+  position: absolute;
+  margin-top: 5%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 70%;
+  margin: 2% 10%;
+  height: auto;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-family: GeosansLight;
+  font-size: 150%;
 }
 
+#search {
+  width: 300px;
+  height: 40px;
+}
 
 /* ESTILOS DEL BUSCADOR */
-#titulo{
-    font-family: "Tokarev";
-    font-size: 400%;
-    text-shadow: 3px 3px 2px black;
-    color: #666;
-    text-align: center
+#titulo {
+  font-family: "Tokarev";
+  font-size: 300%;
+  text-shadow: 3px 3px 2px black;
+  color: #ffffff;
 }
+
+#titulo span {
+  color: #fff;
+  margin-top: 55px;
+
+}
+
+
 #peque {
-    font-size: 70%;
+  font-size: 70%;
 }
 
 .red {
-    color: red;
+  color: red;
 }
 
 .green {
-    color: rgb(0, 245, 0);
+  color: rgb(0, 245, 0);
 }
+
 .yellow {
-    color: yellow;
+  color: yellow;
 }
 
 @font-face {
-    font-family: Tokarev;
-    src: url(fonts/Tokarev.ttf);
+  font-family: Tokarev;
+  src: url(fonts/Tokarev.ttf);
 }
 
+@font-face {
+  font-family: GeosansLight;
+  src: url(fonts/GeosansLight.ttf);
+}

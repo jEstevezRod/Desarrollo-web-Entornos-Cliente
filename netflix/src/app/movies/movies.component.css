@@ -1,21 +1,28 @@
 .box {
-    text-align: center;
-    width: 230px;
-    height : 350px;
-    padding : 15px;
-    background-Color : orange;
-    box-sizing: order-box;
-    margin: 10px;
-    font-family: "Axettac";
+  text-align: center;
+  width: 230px;
+  height: 350px;
+  padding: 15px;
+  background-Color: #d3d3d3;
+  box-sizing: border-box;
+  margin: 20px;
+  font-family: GeosansLight;
+  color: #676869;
 }
 
 img {
-    width: 180px;
-    height: 240px;
-    box-sizing: order-box;
+  width: 180px;
+  height: 240px;
+  box-sizing: border-box;
 
 }
+
 @font-face {
-    font-family: Axettac;
-    src: url(../fonts/AxettacDemo.ttf);
+  font-family: Axettac;
+  src: url(../fonts/AxettacDemo.ttf);
+}
+
+@font-face {
+  font-family: GeosansLight;
+  src: url(../fonts/GeosansLight.ttf);
 }

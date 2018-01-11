@@ -1,27 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { GlobalPetitionService } from './global-petition.service';
+import {Component, Output, EventEmitter} from '@angular/core';
+import {GlobalPetitionService} from './global-petition.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-  <label id="titulo" for="search">
-    <span class="red">b</span>
-    <span class="green">u</span>
-    <span class="yellow">s</span>
-    <span class="red">Q</span>
-    <span class="green">u</span>
-    <span class="yellow">e</span>
-    <span class="red">d</span>
-    <span class="green">a</span>
-    <span id=peque>:</span> 
-  </label>
-  <input type="text" id="search"  value="" #searcher (change)="buscar($event.target.value)">
-  <section id="canvas" infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="50"
-  (scrolled)="nextPage()"><app-movies *ngFor="let movie of globalArray" [movie]="movie"></app-movies>
-  </section>
-  `,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
@@ -74,6 +56,4 @@ export class AppComponent {
       this.Master();
     }
   }
-
-
 }
