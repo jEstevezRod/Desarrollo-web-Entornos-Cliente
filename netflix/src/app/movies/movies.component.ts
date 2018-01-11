@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GlobalPetitionService } from '../global-petition.service';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-movies',
@@ -25,7 +22,7 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+
   }
 
 }

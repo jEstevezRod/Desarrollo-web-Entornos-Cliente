@@ -1,8 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { Http } from '@angular/http';
-import { MoviesComponent } from './movies/movies.component';
 import { GlobalPetitionService } from './global-petition.service';
-import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -37,7 +34,6 @@ export class AppComponent {
   public globalArray = [];
   public loading = false;
   public input;
-  public search;
   public button;
 
 
@@ -53,20 +49,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    var input = document.querySelector('.search-form');
-    var search = document.querySelector('input')
-    var button = document.querySelector('button');
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      input.classList.toggle('active');
-    })
-    search.addEventListener('focus', function() {
-      input.classList.add('focus');
-    })
-    
-    search.addEventListener('blur', function() {
-      search.value.length != 0 ? input.classList.add('focus') : input.classList.remove('focus');
-    })
+
   }
 
   Master() {

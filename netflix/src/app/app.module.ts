@@ -6,14 +6,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
-import { MovieComponent } from './movie/movie.component';
 import { GlobalPetitionService } from './global-petition.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    MovieComponent
   ],
   imports: [
     BrowserModule,
@@ -25,4 +23,3 @@ import { GlobalPetitionService } from './global-petition.service';
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
