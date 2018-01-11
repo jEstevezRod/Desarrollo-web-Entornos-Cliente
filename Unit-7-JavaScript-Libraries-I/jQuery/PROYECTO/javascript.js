@@ -35,15 +35,15 @@ class movieCollection {
 class viewMovie {
 
     addmovie(peli) {
-        this.view = $('#movie').append('<section id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
+        this.view = $('#movie').append('<section id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" /><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
     }
 
     addseries(peli) {
-        this.view = $('#series').append('<section  id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
+        this.view = $('#series').append('<section  id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" /><p>' + peli.title + ' ( ' + peli.year + ' )</p></section>');
     }
 
     addgame(peli) {
-        this.view = $('#game').append('<section  id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" ><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
+        this.view = $('#game').append('<section  id="' + peli.imdbID + '" class="box" seleccionada=false onclick="controlador.ajaxPetitionMovie(this.id)"><img src="' + peli.img + '" /><p>' + peli.title + ' ( ' + peli.year + ' ) </p></section>');
     }
 
     defaultValues() {
@@ -64,7 +64,7 @@ class viewMovie {
 
     loadInformation(dis, img, title, year, runtime, sinopsis, actores, premios) {
         $('.informacion' + dis + '').append('<div class="monoinfor">' +
-            '<img class="monofoto" src="' + img + '"></div>' +
+            '<img class="monofoto" src="' + img + '"/></div>' +
             '<table class="monotext">' +
             '<tr>' +
             '   <td><h3>Título: </h3></td>' +
@@ -95,7 +95,7 @@ class viewMovie {
     }
 
     hideLoading() {
-        $('#cargando').css( "display", "none" ) // need to use this method instead .hide() because working with jQuery data cache repeatedly is better use .css
+        $('#cargando').css("display", "none"); // need to use this method instead .hide() because working with jQuery data cache repeatedly is better use .css
     }
 }
 
@@ -111,7 +111,7 @@ class Controlador {
         this.pagegames = 0;
         this.cargando = false;
         this.page;
-        $('.netflix').click(() => {
+        $('#gran').click(() => {
             self.newview.defaultValues();
             $('#peliculastitulo').text("");
             $('#seriestitulo').text("");
@@ -128,7 +128,7 @@ class Controlador {
         this.newview.loadStructure();
         this.alltypes = ['movie', 'series', 'game'];
         this.alltypes.forEach(function (elem) {
-            controlador.ajaxPetitionAll(elem)
+            controlador.ajaxPetitionAll(elem);
         })
     }
 
@@ -247,25 +247,21 @@ class Controlador {
     }
 
     Searcher() {
-        this.input = document.querySelector('.search-form');
-        this.search = document.querySelector('input');
-        this.button = document.querySelector('button');
-        this.button.addEventListener('click', (e) => {
+        $('button').click((e) => {
             e.preventDefault();
-            this.input.classList.toggle('active');
+            $('.search-form').toggleClass('active');
             $('#flechita').remove();
         });
-        this.search.addEventListener('focus', () => {
-            this.input.classList.add('focus');
+        $('.search-form').focus(() => {
+            $('.search-form').addClass('focus');
         })
-        this.search.addEventListener('blur', () => {
-            this.search.value.length != 0 ? this.input.classList.add('focus') : this.input.classList.remove('focus');
+        $('.search-form').blur(() => {
+            $('input').val().length != 0 ? $('.search-form').addClass('focus') : $('.search-form').removeClass('focus');
         })
 
     }
 
     LoadingIco(){
-        console.log(controlador.cargando)
         if (controlador.cargando == true){
             let vistita = new viewMovie();
             vistita.showLoading()
